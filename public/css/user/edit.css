@@ -1,0 +1,43 @@
+.circle-box {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+
+    background: rgb(196, 196, 196);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle > span {
+    background: rgba(0, 0, 0, 0.35);
+    color: white;
+    border: 1px white solid;
+
+    width: 52px;
+    height: 27px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.short-button {
+    width: 102px;
+    height: 46px;
+    border-radius: 30px;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    margin-top: 40px;
+}

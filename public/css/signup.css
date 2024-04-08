@@ -1,0 +1,58 @@
+.circle-box {
+    display: flex;
+    justify-content: center;
+}
+
+.circle {
+    width: 150px;
+    height: 150px;
+
+    background: rgb(196, 196, 196);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.circle-lt {
+    margin-left: 32%;
+    width: 8%;
+    margin-top: 32%;
+    height: 8%;
+
+    border-right: 1px black solid;
+    border-bottom: 1px black solid;
+}
+
+.circle-rt {
+    margin-right: 32%;
+    width: 8%;
+    margin-top: 32%;
+    height: 8%;
+
+    border-left: 1px black solid;
+    border-bottom: 1px black solid;
+}
+
+.circle-lb {
+    margin-left: 32%;
+    width: 8%;
+    margin-bottom: 32%;
+    height: 8%;
+
+    border-right: 1px black solid;
+    border-top: 1px black solid;
+}
+
+.circle-rb {
+    margin-right: 32%;
+    width: 8%;
+    margin-bottom: 32%;
+    height: 8%;
+
+    border-left: 1px black solid;
+    border-top: 1px black solid;
+}

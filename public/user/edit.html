@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../css/user/edit.css" type="text/css"/>
+    <title>Community - 회원정보 수정</title>
+</head>
+<body>
+<header>
+
+    <a href="">
+        <h1>
+            아무말 대잔치
+        </h1>
+    </a>
+    <div class="profile-img">
+        <div class="profile-menu">
+            <a href="#">회원정보수정</a>
+            <a href="#">비밀번호수정</a>
+            <a href="#">로그아웃</a>
+        </div>
+    </div>
+</header>
+<section class="wrap">
+    <div class="box-small">
+        <h1 class="page-title">
+            회원정보수정
+        </h1>
+        <form class="input-box">
+            <div class="input-item">
+                <label>
+                    프로필 사진<span class="star">*</span>
+                </label>
+                <div class="circle-box">
+                    <div class="circle">
+                        <span>변경</span>
+                    </div>
+                </div>
+                <p class="helper-text"></p>
+            </div>
+            <div class="input-item">
+                <label>
+                    이메일<span class="star">*</span>
+                </label>
+                <p>startupcode@gmail.com</p>
+            </div>
+            <div class="input-item">
+                <label for="nickname">
+                    닉네임
+                </label>
+                <input type="text" name="nickname" id="nickname" placeholder="스타트업코드"  class="default-input">
+                <p class="helper-text">
+                    * helper text
+                </p>
+            </div>
+        </form>
+        <button class="long-button buttons magenta-button">
+            수정하기
+        </button>
+        <a href="login.html">
+            <p class="additional-button">회원 탈퇴</p>
+        </a>
+
+        <button class="buttons short-button magenta-button">
+            수정완료
+        </button>
+    </div>
+</section>
+<aside class="modal">
+    <h3>
+        회원탈퇴 하시겠습니까?
+    </h3>
+    <p>
+        작성된 게시글과 댓글은 삭제됩니다.
+    </p>
+    <div>
+        <button  class="modal-button cancel">취소</button>
+        <button  class="modal-button confirm">확인</button>
+    </div>
+</aside>
+</body>
+</html>
