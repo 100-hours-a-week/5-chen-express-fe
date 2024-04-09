@@ -4,12 +4,16 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "local" : "node app.js"
+    "local": "node app.js",
+    "pm2": "pm2 start app.js",
+    "pm2 kill": "pm2 kill"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "express-generator": "^4.16.1",
+    "pm2": "^5.3.1"
   }
 }

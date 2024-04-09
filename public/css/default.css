@@ -59,6 +59,7 @@ header {
     height: 36px;
 
     border-radius: 50%;
+    padding: 0 0;
 }
 
 header > .profile-img {
