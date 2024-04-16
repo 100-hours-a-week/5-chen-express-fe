@@ -46,3 +46,12 @@ input[type=text] {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+#write-done-button {
+    align-self: center;
+}
+
+
+#write-done-button:disabled {
+    background: var(--magenta);
+}

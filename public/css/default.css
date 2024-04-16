@@ -15,7 +15,6 @@ ul {
     --deep-magenta: rgba(127, 106, 238, 1);
     --profile-img-grey: rgba(217, 217, 217, 1);
     --magenta: #ACA0EB;
-
 }
 
 body {
@@ -43,13 +42,24 @@ a {
 }
 
 header {
+    width: 100%;
+
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 104px;
+
     border-bottom: 1px solid black;
     font-family: 'SagacSagac', serif;
 }
+
+#header-wrap {
+    width: 592px;
+    height: 104px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 .profile-img {
     display: block;
@@ -62,14 +72,7 @@ header {
     padding: 0 0;
 }
 
-header > .profile-img {
-    position: absolute;
-    right: 35%;
-}
-
-header > .back {
-    position: absolute;
-    left: 35%;
+#back {
     font-size: 40px;
     font-weight: 400;
 }
@@ -142,7 +145,7 @@ header h1 {
 }
 
 .helper-text {
-    display: inline;
+    display: none;
     font-size: 12px;
     color: red;
     margin: 5px 0 0 0;
@@ -160,19 +163,27 @@ header h1 {
 }
 
 
-.magenta-deep-button {
+.deep-magenta-button {
     background: var(--deep-magenta);
 }
 
 .long-button {
     width: 380px;
     height: 37px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .short-button {
     width: 138px;
     height: 39px;
     border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .additional-button {
@@ -192,7 +203,7 @@ header h1 {
 }
 
 
-.profile-menu {
+#profile-menu {
     display: none;
 
     background: var(--profile-img-grey);
@@ -211,11 +222,7 @@ header h1 {
     font-weight: 400;
 }
 
-.profile-img:hover .profile-menu {
-    display: flex;
-}
-
-.profile-menu > a {
+#profile-menu > a {
     width: 90%;
     height: 30px;
     margin: 4px 5%;
