@@ -15,6 +15,8 @@ ul {
     --deep-magenta: rgba(127, 106, 238, 1);
     --profile-img-grey: rgba(217, 217, 217, 1);
     --magenta: #ACA0EB;
+    --z-dimm: 1233;
+    --z-modal: 1234;
 }
 
 body {
@@ -186,6 +188,22 @@ header h1 {
     align-items: center;
 }
 
+.small-button {
+    width: 50px;
+    height: 27px;
+    border-radius: 8px;
+    border: 1px solid var(--magenta);
+
+    font-weight: 400;
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    background-color: var(--bg-color);
+}
+
 .additional-button {
     font-weight: 400;
     margin: 0 0 0 0;
@@ -237,10 +255,23 @@ header h1 {
     border-radius: 12px;
     background: white;
 
-    display: flex;
+
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    position: fixed;
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    border: 1px var(--magenta) solid;
+
+    z-index: var(--z-modal);
 }
 
 .modal > h3 {
@@ -255,11 +286,17 @@ header h1 {
     line-height: 24px;
 }
 
-.modal {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    border: 1px var(--magenta) solid;
+#dimmed {
+    display: none;
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+
+    z-index: var(--z-dimm);
 }
 
 .modal-button {

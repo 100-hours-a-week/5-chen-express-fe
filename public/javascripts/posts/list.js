@@ -1,5 +1,6 @@
-document.addEventListener("scroll", (evt) => {
+console.log("LIST JS")
 
+document.addEventListener("scroll", (evt) => {
     console.log(window.screenY);
 })
 

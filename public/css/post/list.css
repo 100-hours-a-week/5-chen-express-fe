@@ -32,6 +32,8 @@
 
 .post {
     width: 100%;
+    display: block;
+
     background: rgba(204, 204, 204, 0.25);
     border-radius: 16px;
 }
@@ -74,4 +76,8 @@
 
 .post-created-at {
     margin-left: auto;
+}
+
+#post-template {
+    display: block;
 }

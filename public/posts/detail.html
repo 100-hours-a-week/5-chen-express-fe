@@ -7,23 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/default.css" type="text/css"/>
     <link rel="stylesheet" href="../css/post/detail.css" type="text/css"/>
+    <script src="/javascripts/header.js" defer></script>
+    <script src="/javascripts/default.js" defer></script>
+    <script src="/javascripts/posts/detail.js" defer></script>
     <title>Community - 글 상세</title>
 </head>
 <body>
 <header>
-    <a href="/index.html" class="back">
-        <span><</span>
-    </a>
-    <a href="">
-        <h1>
-            아무말 대잔치
-        </h1>
-    </a>
-    <div class="profile-img">
-        <div class="profile-menu">
-            <a href="#">회원정보수정</a>
-            <a href="#">비밀번호수정</a>
-            <a href="#">로그아웃</a>
+    <div id="header-wrap">
+        <p id="back">
+            <span><</span>
+        </p>
+        <a href="/">
+            <h1>
+                아무말 대잔치
+            </h1>
+        </a>
+        <div id="header-img" class="profile-img">
+            <div id="profile-menu">
+                <a href="/users/edit.html">회원정보수정</a>
+                <a href="/users/edit-password.html">비밀번호수정</a>
+                <a href="/index.html">로그아웃</a>
+            </div>
         </div>
     </div>
 </header>
@@ -41,8 +46,8 @@
                     </div>
                     <span class="post-created-at">2021-01-01 00:00:00</span>
                     <div class="post-head-buttons">
-                        <button>수정</button>
-                        <button class="delete-post">삭제</button>
+                        <a href="/posts/edit.html" id="edit-post" class="small-button">수정</a>
+                        <button id="delete-post" class="small-button">삭제</button>
                     </div>
                 </div>
 
@@ -98,16 +103,16 @@
                     <span>더미 작성자 1</span>
                     <span class="comment-date">2021-01-01 00:00:00</span>
                     <div class="post-head-buttons">
-                        <button>
+                        <button class="small-button">
                             수정
                         </button>
-                        <button class="delete-comment">
+                        <button class="small-button delete-comment">
                             삭제
                         </button>
                     </div>
                 </div>
                 <div class="comment-content">
-                    댓글 내용
+                    본문
                 </div>
             </li>
             <li class="comment-wrap">
@@ -116,53 +121,22 @@
                     <span>더미 작성자 1</span>
                     <span class="comment-date">2021-01-01 00:00:00</span>
                     <div class="post-head-buttons">
-                        <button>
+                        <button class="small-button">
                             수정
                         </button>
-                        <button  class="delete-comment">
+                        <button class="small-button delete-comment">
                             삭제
                         </button>
                     </div>
                 </div>
                 <div class="comment-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget pellentesque justo. Donec vel
-                    lobortis arcu, porta elementum magna. Vivamus in nibh vel mauris rhoncus malesuada vitae in nisl.
-                    Donec aliquam tincidunt velit, nec imperdiet mauris molestie at. Interdum et malesuada fames ac ante
-                    ipsum primis in faucibus. Proin sit amet leo facilisis, viverra quam eu, vehicula justo. Fusce at
-                    est bibendum, finibus lacus eget, placerat lectus. In ut purus malesuada, aliquet ligula non, mollis
-                    sapien. Integer vel laoreet eros, porttitor dapibus neque.
-
-                    Aliquam erat volutpat. Sed ut sapien purus. Aenean vulputate, tellus non vestibulum faucibus, libero
-                    risus viverra nisl, in tristique est diam id enim. Pellentesque eget metus id est mollis maximus.
-                    Maecenas vestibulum mattis lorem id pharetra. Ut rutrum eros elit, in pulvinar ipsum egestas quis.
-                    Etiam porttitor non nulla quis fringilla. Duis non magna eu velit pellentesque sollicitudin at a
-                    tortor. Proin eget massa sed tortor gravida consectetur. Phasellus tempus imperdiet dolor.
-
-
-                </div>
-            </li>
-            <li class="comment-wrap">
-                <div class="author-profile">
-                    <span class="profile-img"></span>
-                    <span>더미 작성자 1</span>
-                    <span class="comment-date">2021-01-01 00:00:00</span>
-                    <div class="post-head-buttons">
-                        <button>
-                            수정
-                        </button>
-                        <button  class="delete-comment">
-                            삭제
-                        </button>
-                    </div>
-                </div>
-                <div class="comment-content">
-                    댓글 내용
+                    본문
                 </div>
             </li>
         </ul>
     </main>
 </section>
-<aside class="modal">
+<aside class="modal" id="modal-delete-post">
     <h3>
         게시글을 삭제하시겠습니까?
     </h3>
@@ -170,11 +144,11 @@
         삭제한 내용은 복구 할 수 없습니다.
     </p>
     <div>
-        <button  class="modal-button cancel">취소</button>
-        <button  class="modal-button confirm">확인</button>
+        <button class="modal-button cancel modal-cancel">취소</button>
+        <button class="modal-button confirm">확인</button>
     </div>
 </aside>
-<aside class="modal">
+<aside class="modal" id="modal-delete-comment">
     <h3>
         댓글을 삭제하시겠습니까?
     </h3>
@@ -182,9 +156,11 @@
         삭제한 내용은 복구 할 수 없습니다.
     </p>
     <div>
-        <button  class="modal-button cancel">취소</button>
-        <button  class="modal-button confirm">확인</button>
+        <button class="modal-button cancel">취소</button>
+        <button class="modal-button confirm">확인</button>
     </div>
+</aside>
+<aside id="dimmed">
 </aside>
 
 </body>
