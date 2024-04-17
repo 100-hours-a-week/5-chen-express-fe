@@ -5,6 +5,8 @@ const inputNickname = document.getElementById("nickname");
 const buttonEdit = document.getElementById("edit-submit")
 const helperText = document.getElementsByClassName("helper-text")[0]
 const buttonDone = document.getElementById("edit-done")
+const inputImage = document.getElementById("profile-image")
+const displayImage = document.getElementById("display-image")
 
 buttonExitUser.addEventListener("click", () => {
     modalOn("modal-exit");
@@ -26,5 +28,10 @@ buttonEdit.addEventListener("click", () => {
 buttonDone.addEventListener("click", () => {
     history.back()
 })
+
+inputImage.addEventListener("change", () => {
+    displayImageOnChange(inputImage, displayImage)
+})
+
 
 
