@@ -1,9 +1,10 @@
+console.log("LOGIN JS")
+
 const loginButton = document.getElementById("login-button");
 const inputEmail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
 const helperTextList = document.getElementsByClassName("helper-text")
-
-// const WARNING = "*입력하신 계정 정보가 정확하지 않습니다."
+const W_USER_NOT_FOUND = "*입력하신 계정 정보가 정확하지 않습니다."
 
 loginButton.addEventListener('click', () => {
     const userEmail = inputEmail.value;
@@ -12,15 +13,36 @@ loginButton.addEventListener('click', () => {
     const emailResult = validateEmail(userEmail)
     const passwordResult = validatePassword(userPassword)
 
-    if (emailResult !== PASS || passwordResult !== PASS) {
-        helperTextList[0].innerHTML = emailResult;
-        helperTextList[0].style.display = "inline";
+    let validated = true;
+    if (emailResult !== PASS) {
+        enableHelper(helperTextList[0], emailResult)
+        validated = false;
+    }
+    if (passwordResult !== PASS) {
+        enableHelper(helperTextList[1], passwordResult)
+        validated = false;
+    }
+    if (!validated) {
+        return;
+    }
 
-        helperTextList[1].innerHTML = passwordResult;
-        helperTextList[1].style.display = "inline";
-    } else {
-        helperTextList[0].style.display = "none";
-        helperTextList[1].style.display = "none";
+    getJSON("/json/users.json").then((data) => {
+        for (const user of data.users) {
+            if (userEmail === user.email && userPassword === user.password) {
+                return true;
+            }
+        }
+        return false;
+    }).then((match) => {
+        if (!match) {
+            disableHelper(helperTextList[0])
+            enableHelper(helperTextList[1], W_USER_NOT_FOUND)
+            return;
+        }
+
+        disableHelper(helperTextList[0]);
+        disableHelper(helperTextList[1]);
+
         loginButton.style.background = CSS_DEEP_MAGENTA;
 
         let seconds = 3
@@ -36,5 +58,6 @@ loginButton.addEventListener('click', () => {
             loginButton.innerText = "로그인";
             clearInterval(timer)
         }, 3333)
-    }
+    })
+
 })

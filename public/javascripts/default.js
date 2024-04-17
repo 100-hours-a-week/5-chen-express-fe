@@ -118,7 +118,65 @@ function displayImageOnChange(inputImage, displayImage) {
     }
 }
 
+function getJSON(path) {
+    if (!path.endsWith(".json")) {
+        path = path + ".json"
+    }
+    return fetch(path)
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).catch(err => {
+            console.warn(err)
+        }).finally(() => {
+            console.log(`fetch done : ${path}`)
+        });
+}
+
+function formatDateTime(date) {
+    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+}
+
+function fromHTML(html, trim = true) {
+    html = trim ? html.trim() : html;
+    if (!html) return null;
+
+    const template = document.createElement("template");
+    template.innerHTML = html;
+    const result = template.content.children;
+
+    if (result.length === 1) return result[0];
+    return result;
+}
+
+/* ########### MODAL PART ################*/
 document.querySelectorAll(".modal-button.cancel")
     .forEach((v, k, p) => {
         v.addEventListener("click", modalOff)
+    })
+
+/* ########### HEADER PART ################*/
+const headerImage = document.getElementById("header-img");
+const backButton = document.getElementById("back");
+
+headerImage.addEventListener("click", (evt) => {
+    const profileMenu = document.getElementById("profile-menu");
+    if (profileMenu.style.display == "flex") {
+        profileMenu.style.display = "none"
+    } else {
+        profileMenu.style.display = "flex"
+    }
+})
+
+backButton.addEventListener("click", (e) => {
+    history.back();
+    e.preventDefault();
+})
+
+getJSON("/json/users/me.json")
+    .then((data) => {
+        headerImage.style.background = `url(${data.profile_image}) center`;
+        headerImage.style.backgroundSize = "cover";
     })

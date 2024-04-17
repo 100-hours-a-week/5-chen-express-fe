@@ -64,14 +64,11 @@
 
     display: flex;
     flex-direction: row;
+    column-gap: 7px;
 }
 
 .post-counts {
     align-self: start;
-}
-
-.post-counts > span {
-    margin: 0 7px 0 2px;
 }
 
 .post-created-at {
