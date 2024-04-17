@@ -14,7 +14,7 @@ input[type=text] {
 .post-title > textarea {
     padding-top: 15px;
     font-size: 16px;
-    resize: vertical;
+    resize: none;
 }
 
 .post-content > textarea {

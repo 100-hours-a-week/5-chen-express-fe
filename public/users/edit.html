@@ -5,23 +5,30 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/default.css" type="text/css"/>
-    <link rel="stylesheet" href="../css/user/edit.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/user/edit.css" type="text/css"/>
+    <script src="/javascripts/default.js" defer></script>
+    <script src="/javascripts/header.js" defer></script>
+    <script src="/javascripts/users/edit.js" defer></script>
     <title>Community - 회원정보 수정</title>
 </head>
 <body>
 <header>
-
-    <a href="">
-        <h1>
-            아무말 대잔치
-        </h1>
-    </a>
-    <div class="profile-img">
-        <div class="profile-menu">
-            <a href="#">회원정보수정</a>
-            <a href="#">비밀번호수정</a>
-            <a href="#">로그아웃</a>
+    <div id="header-wrap">
+        <p id="back">
+            <span><</span>
+        </p>
+        <a href="/">
+            <h1>
+                아무말 대잔치
+            </h1>
+        </a>
+        <div id="header-img" class="profile-img">
+            <div id="profile-menu">
+                <a href="/users/edit.html">회원정보수정</a>
+                <a href="/users/edit-password.html">비밀번호수정</a>
+                <a href="/index.html">로그아웃</a>
+            </div>
         </div>
     </div>
 </header>
@@ -33,14 +40,14 @@
         <form class="input-box">
             <div class="input-item">
                 <label>
-                    프로필 사진<span class="star">*</span>
+                    프로필 사진 *
                 </label>
                 <div class="circle-box">
-                    <div class="circle">
-                        <span>변경</span>
-                    </div>
+                    <label class="circle" for="profile-image">
+                        <span class="img-change">변경</span>
+                    </label>
                 </div>
-                <p class="helper-text"></p>
+                <input type="file" name="image" id="profile-image" alt="profile-image" accept="image/jpeg, image/png">
             </div>
             <div class="input-item">
                 <label>
@@ -52,25 +59,22 @@
                 <label for="nickname">
                     닉네임
                 </label>
-                <input type="text" name="nickname" id="nickname" placeholder="스타트업코드"  class="default-input">
+                <input type="text" name="nickname" id="nickname" placeholder="스타트업코드" class="default-input">
                 <p class="helper-text">
                     * helper text
                 </p>
             </div>
         </form>
-        <button class="long-button buttons magenta-button">
+        <button class="long-button buttons magenta-button" id="edit-submit">
             수정하기
         </button>
-        <a href="login.html">
-            <p class="additional-button">회원 탈퇴</p>
-        </a>
-
-        <button class="buttons short-button magenta-button">
+        <p class="additional-button" id="exit-user">회원 탈퇴</p>
+        <button class="buttons short-button magenta-button" id="edit-done">
             수정완료
         </button>
     </main>
 </section>
-<aside class="modal">
+<aside class="modal" id="modal-exit">
     <h3>
         회원탈퇴 하시겠습니까?
     </h3>
@@ -78,9 +82,12 @@
         작성된 게시글과 댓글은 삭제됩니다.
     </p>
     <div>
-        <button  class="modal-button cancel">취소</button>
-        <button  class="modal-button confirm">확인</button>
+        <button class="modal-button cancel">취소</button>
+        <button class="modal-button confirm">확인</button>
     </div>
 </aside>
+<aside id="dimmed">
+</aside>
+
 </body>
 </html>
