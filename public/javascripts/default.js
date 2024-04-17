@@ -54,7 +54,6 @@ function validateNickname(nickname, validateDuplicate = false) {
 function validatePassword(userPassword, validateDuplicate = false) {
     const W_PWD_EMPTY = "*비밀번호를 입력해 주세요.";
     const W_PWD_FORMAT = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
-
     if (userPassword.trim() == "") {
         return W_PWD_EMPTY;
     }
@@ -73,7 +72,6 @@ function validatePasswordConfirmation(userPassword, userPasswordConfirmation) {
         return "*비밀번호를 한번 더 입력해주세요.";
     }
     if (userPassword != userPasswordConfirmation) {
-        console.log(userPassword, userPasswordConfirmation)
         return "*비밀번호와 다릅니다.";
     }
     return PASS
@@ -82,9 +80,10 @@ function validatePasswordConfirmation(userPassword, userPasswordConfirmation) {
 
 function validateEmail(userEmail, validateDuplicate = false) {
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    const W_EMAIL_INVALID = "*올바른 이메일 주소 형식을 입력해 주세요. (예: example@example.com)";
 
     if (userEmail.trim() == "") {
-        return "*올바른 이메일 주소 형식을 입력해 주세요. (예: example@example.com";
+        return W_EMAIL_INVALID;
     }
 
     // if (VALID_LENGTH_MAX < userEmail.length) {
@@ -92,7 +91,7 @@ function validateEmail(userEmail, validateDuplicate = false) {
     // }
 
     if (!userEmail.match(validRegex)) {
-        return "*올바른 이메일 주소 형식을 입력해 주세요. (예: example@example.com";
+        return W_EMAIL_INVALID;
     }
     return PASS;
 }
@@ -104,6 +103,19 @@ function enableHelper(helperNode, text) {
 
 function disableHelper(helperNode) {
     helperNode.style.display = "none";
+}
+
+function displayImageOnChange(inputImage, displayImage) {
+    const file = inputImage.files[0]
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+        displayImage.style.backgroundImage = `url(${reader.result})`;
+        displayImage.style.backgroundSize = "cover";
+    }
+    if (file) {
+        reader.readAsDataURL(file)
+    }
 }
 
 document.querySelectorAll(".modal-button.cancel")

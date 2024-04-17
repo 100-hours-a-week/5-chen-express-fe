@@ -63,19 +63,25 @@ header {
     align-items: center;
 }
 
+#header-wrap > *:nth-child(odd) {
+    min-width: 36px;
+    min-height: 1px;
+}
+
 
 .profile-img {
     display: block;
     background: var(--profile-img-grey);
-
-    width: 36px;
     height: 36px;
-
+    width: 36px;
     border-radius: 50%;
     padding: 0 0;
 }
 
 #back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 40px;
     font-weight: 400;
 }
