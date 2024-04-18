@@ -52,7 +52,7 @@ async function validateNickname(nickname, validateDuplicate = false) {
             .then((data) => {
                 const users = data.users;
                 for (const user of users) {
-                    if (userEmail === user.email) {
+                    if (nickname === user.nickname) {
                         return true;
                     }
                 }

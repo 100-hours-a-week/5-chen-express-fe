@@ -25,14 +25,13 @@ buttonEdit.addEventListener("click", () => {
     validateNickname(inputNickname.value, true)
         .then(nicknameResult => {
             if (nicknameResult !== PASS) {
-                helperText.style.display = "inline";
-                helperText.innerHTML = nicknameResult;
-                return;
+                enableHelper(helperText, nicknameResult);
             } else {
-                helperText.style.display = "none";
+                disableHelper(helperText);
+                alert("수정되었습니다.")
             }
-            alert("수정되었습니다.")
-        });
+
+        })
 })
 
 buttonDone.addEventListener("click", () => {
