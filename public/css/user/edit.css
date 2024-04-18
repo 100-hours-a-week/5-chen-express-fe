@@ -3,10 +3,14 @@
     justify-content: center;
 }
 
+p {
+    margin: 3px 0;
+}
+
 .circle {
     width: 150px;
     height: 150px;
-    background: url("/images/profile-image.jpeg") center;
+    background: var(--profile-img-grey) center;
     background-size: cover;
     border-radius: 50%;
 

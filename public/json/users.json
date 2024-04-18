@@ -3,12 +3,14 @@
     {
       "id": 1,
       "email": "aaaa@aaaa.com",
-      "password": "abc123!@#"
+      "password": "abc123!@#",
+      "nickname": "가나다라마바사"
     },
     {
       "id": 2,
       "email": "bbbb@bbbb.com",
-      "password": "abc123!@#"
+      "password": "abc123!@#",
+      "nickname": "사바마라다나가"
     }
   ]
 }

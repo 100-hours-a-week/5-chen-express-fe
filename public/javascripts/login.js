@@ -6,11 +6,11 @@ const inputPassword = document.getElementById("password");
 const helperTextList = document.getElementsByClassName("helper-text")
 const W_USER_NOT_FOUND = "*입력하신 계정 정보가 정확하지 않습니다."
 
-loginButton.addEventListener('click', () => {
+loginButton.addEventListener('click', async () => {
     const userEmail = inputEmail.value;
     const userPassword = inputPassword.value
 
-    const emailResult = validateEmail(userEmail)
+    const emailResult = await validateEmail(userEmail)
     const passwordResult = validatePassword(userPassword)
 
     let validated = true;

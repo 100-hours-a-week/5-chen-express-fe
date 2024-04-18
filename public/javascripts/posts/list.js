@@ -2,7 +2,6 @@ console.log("LIST JS")
 
 function makePostFromData(post) {
     const createdAt = new Date(Date.parse(post.created_at));
-    console.log(post);
     const html =
         `
                 <a href="/posts/detail.html" class="post" id="post-template">
@@ -26,12 +25,12 @@ function makePostFromData(post) {
 
 const postsContainer = document.getElementById("post-parent");
 
-function representPost() {
-    getJSON("/json/posts.json").then(data => {
-        for (const post of data.posts) {
-            postsContainer.appendChild(makePostFromData(post))
-        }
-    })
-}
+
+getJSON("/json/posts.json").then(data => {
+    for (const post of data.posts) {
+        postsContainer.appendChild(makePostFromData(post))
+    }
+})
+
 
 // TODO : 무한 스크롤

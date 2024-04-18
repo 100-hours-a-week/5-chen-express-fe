@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "title": "타 이 틀 1",
+  "author": {
+    "nickname": "더미 작성자 1",
+    "profile_image": "/images/profile-image.jpeg"
+  },
+  "content": "awrgaergareglaehrgaeuhgoaerijga'pegjaeprogjeprogjaejrlgaklejrb tkljeranhgj ehraglerg;lej gje prgja egi j",
+  "like_count": 111,
+  "comment_count": 222,
+  "view_count": 333,
+  "image": {
+    "path": "/images/jobs.jpeg",
+    "name": "jobs.jpeg"
+  },
+  "created_at": "2024-04-17T07:30:54.696Z"
+}

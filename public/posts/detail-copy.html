@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/post/detail.css" type="text/css"/>
+    <script src="/javascripts/default.js" defer></script>
+    <script src="/javascripts/posts/detail.js" defer></script>
+    <title>Community - 글 상세</title>
+</head>
+<body>
+<header>
+    <div id="header-wrap">
+        <p id="back">
+            <span><</span>
+        </p>
+        <a href="/">
+            <h1>
+                아무말 대잔치
+            </h1>
+        </a>
+        <div id="header-img" class="profile-img">
+            <div id="profile-menu">
+                <a href="/users/edit.html">회원정보수정</a>
+                <a href="/users/edit-password.html">비밀번호수정</a>
+                <a href="/index.html">로그아웃</a>
+            </div>
+        </div>
+    </div>
+</header>
+<section class="wrap">
+    <main class="box-mid">
+        <article class="post-detail-wrap">
+            <div id="post-container">
+                <div class="post-head">
+                    <div>
+                        <h1>제목 1</h1>
+                    </div>
+                    <div class="post-head-bottom">
+                        <div class="author-profile">
+                            <span class="profile-img"></span>
+                            <span>더미 작성자 1</span>
+                        </div>
+                        <span class="post-created-at">2021-01-01 00:00:00</span>
+                        <div class="post-head-buttons">
+                            <a href="/posts/edit.html" id="edit-post" class="small-button">수정</a>
+                            <button id="delete-post" class="small-button">삭제</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="post-body-wrap">
+                    <div class="post-photo">
+                    </div>
+                    <div class="post-body">
+                        내용
+                    </div>
+                </div>
+                <div class="post-button-wrap">
+                    <button class="post-meta-button">
+                        <span>123</span>
+                        <span>조회수</span>
+                    </button>
+                    <button class="post-meta-button">
+                        <span>123</span>
+                        <span>댓글</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+        <div class="comments-write">
+            <textarea placeholder="댓글을 남겨주세요!" id="comment-write"></textarea>
+            <button class="short-button magenta-button" id="comment-button">댓글 등록</button>
+        </div>
+        <ul class="comments-list">
+            <li class="comment-wrap">
+                <div class="author-profile">
+                    <span class="profile-img"></span>
+                    <span>더미 작성자 1</span>
+                    <span class="comment-date">2021-01-01 00:00:00</span>
+                    <div class="post-head-buttons">
+                        <button class="small-button">
+                            수정
+                        </button>
+                        <button class="small-button delete-comment">
+                            삭제
+                        </button>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    본문
+                </div>
+            </li>
+            <li class="comment-wrap">
+                <div class="author-profile">
+                    <span class="profile-img"></span>
+                    <span>더미 작성자 1</span>
+                    <span class="comment-date">2021-01-01 00:00:00</span>
+                    <div class="post-head-buttons">
+                        <button class="small-button">
+                            수정
+                        </button>
+                        <button class="small-button delete-comment">
+                            삭제
+                        </button>
+                    </div>
+                </div>
+                <div class="comment-content">
+                    본문
+                </div>
+            </li>
+        </ul>
+    </main>
+</section>
+<aside class="modal" id="modal-delete-post">
+    <h3>
+        게시글을 삭제하시겠습니까?
+    </h3>
+    <p>
+        삭제한 내용은 복구 할 수 없습니다.
+    </p>
+    <div>
+        <button class="modal-button cancel modal-cancel">취소</button>
+        <button class="modal-button confirm">확인</button>
+    </div>
+</aside>
+<aside class="modal" id="modal-delete-comment">
+    <h3>
+        댓글을 삭제하시겠습니까?
+    </h3>
+    <p>
+        삭제한 내용은 복구 할 수 없습니다.
+    </p>
+    <div>
+        <button class="modal-button cancel">취소</button>
+        <button class="modal-button confirm">확인</button>
+    </div>
+</aside>
+<aside id="dimmed">
+</aside>
+
+</body>
+</html>

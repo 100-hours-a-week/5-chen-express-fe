@@ -35,18 +35,35 @@ function modalOff() {
     document.body.style.overflow = "visible";
 }
 
-function validateNickname(nickname, validateDuplicate = false) {
-    if (nickname.length == 0) {
-        return "*닉네임을 입력해주세요.";
+async function validateNickname(nickname, validateDuplicate = false) {
+    const W_NICK_EMPTY = "*닉네임을 입력해주세요.";
+    const W_NICK_LONG = "*닉네임은 최대 10자 까지 작성 가능합니다.";
+    const W_NICK_BLANK = "*띄어쓰기를 없애주세요.";
+    const W_NICK_DUPLICATED = "*중복된 닉네임 입니다.";
+
+    if (nickname.length === 0) {
+        return W_NICK_EMPTY;
     }
     if (nickname.includes(" ")) {
-        return "*띄어쓰기를 없애주세요.";
+        return W_NICK_BLANK;
     }
     if (validateDuplicate) {
-        console.log("DUPLICATE!")
+        const isDuplicated = await getJSON("/json/users.json")
+            .then((data) => {
+                const users = data.users;
+                for (const user of users) {
+                    if (userEmail === user.email) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        if (isDuplicated) {
+            return W_NICK_DUPLICATED;
+        }
     }
     if (nickname.length >= 11) {
-        return "*닉네임은 최대 10자 까지 작성 가능합니다.";
+        return W_NICK_LONG;
     }
     return PASS;
 }
@@ -78,11 +95,12 @@ function validatePasswordConfirmation(userPassword, userPasswordConfirmation) {
 }
 
 
-function validateEmail(userEmail, validateDuplicate = false) {
+async function validateEmail(userEmail, validateDuplicate = false) {
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const W_EMAIL_INVALID = "*올바른 이메일 주소 형식을 입력해 주세요. (예: example@example.com)";
+    const W_EMAIL_DUPLICATED = "*중복된 이메일 입니다."
 
-    if (userEmail.trim() == "") {
+    if (userEmail.trim() === "") {
         return W_EMAIL_INVALID;
     }
 
@@ -93,6 +111,23 @@ function validateEmail(userEmail, validateDuplicate = false) {
     if (!userEmail.match(validRegex)) {
         return W_EMAIL_INVALID;
     }
+
+    if (validateDuplicate) {
+        const isDuplicated = await getJSON("/json/users.json")
+            .then((data) => {
+                const users = data.users;
+                for (const user of users) {
+                    if (userEmail === user.email) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        if (isDuplicated) {
+            return W_EMAIL_DUPLICATED;
+        }
+    }
+
     return PASS;
 }
 
@@ -118,7 +153,7 @@ function displayImageOnChange(inputImage, displayImage) {
     }
 }
 
-function getJSON(path) {
+async function getJSON(path) {
     if (!path.endsWith(".json")) {
         path = path + ".json"
     }
@@ -161,22 +196,27 @@ document.querySelectorAll(".modal-button.cancel")
 const headerImage = document.getElementById("header-img");
 const backButton = document.getElementById("back");
 
-headerImage.addEventListener("click", (evt) => {
-    const profileMenu = document.getElementById("profile-menu");
-    if (profileMenu.style.display == "flex") {
-        profileMenu.style.display = "none"
-    } else {
-        profileMenu.style.display = "flex"
-    }
-})
+if (headerImage !== null) {
+    headerImage.addEventListener("click", (evt) => {
+        const profileMenu = document.getElementById("profile-menu");
+        if (profileMenu.style.display == "flex") {
+            profileMenu.style.display = "none"
+        } else {
+            profileMenu.style.display = "flex"
+        }
+    })
+
+    getJSON("/json/users/me.json")
+        .then((data) => {
+            headerImage.style.background = `url(${data.profile_image}) center`;
+            headerImage.style.backgroundSize = "cover";
+        })
+}
+
 
 backButton.addEventListener("click", (e) => {
     history.back();
     e.preventDefault();
 })
 
-getJSON("/json/users/me.json")
-    .then((data) => {
-        headerImage.style.background = `url(${data.profile_image}) center`;
-        headerImage.style.backgroundSize = "cover";
-    })
+

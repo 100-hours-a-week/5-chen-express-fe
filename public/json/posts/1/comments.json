@@ -1,0 +1,40 @@
+{
+  "comments": [
+    {
+      "id": 1,
+      "author": {
+        "nickname": "더미 작성자 1",
+        "profile_image": "/images/profile-image.jpeg"
+      },
+      "created_at": "2024-04-17T07:30:54.696Z",
+      "content": "댓글 내용 1"
+    },
+    {
+      "id": 2,
+      "author": {
+        "nickname": "더미 작성자 1",
+        "profile_image": "/images/profile-image.jpeg"
+      },
+      "created_at": "2024-04-17T07:30:54.696Z",
+      "content": "댓글 내용 1"
+    },
+    {
+      "id": 3,
+      "author": {
+        "nickname": "더미 작성자 1",
+        "profile_image": "/images/profile-image.jpeg"
+      },
+      "created_at": "2024-04-17T07:30:54.696Z",
+      "content": "댓글 내용 1"
+    },
+    {
+      "id": 4,
+      "author": {
+        "nickname": "더미 작성자 1",
+        "profile_image": "/images/profile-image.jpeg"
+      },
+      "created_at": "2024-04-17T07:30:54.696Z",
+      "content": "댓글 내용 1"
+    }
+  ]
+}

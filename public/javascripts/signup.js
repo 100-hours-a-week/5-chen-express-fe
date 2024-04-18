@@ -12,8 +12,8 @@ const helperTextList = document.getElementsByClassName("helper-text");
 const buttonSignup = document.getElementById("signup-button");
 
 
-function checkEmail() {
-    const result = validateEmail(inputEmail.value);
+async function checkEmail() {
+    const result = await validateEmail(inputEmail.value, true);
     if (result !== PASS) {
         enableHelper(helperTextList[1], result)
         return false;
@@ -23,7 +23,7 @@ function checkEmail() {
 }
 
 
-function checkPassword() {
+async function checkPassword() {
     const result = validatePassword(inputPassword.value);
     if (result !== PASS) {
         enableHelper(helperTextList[2], result);
@@ -33,7 +33,7 @@ function checkPassword() {
     return true;
 }
 
-function checkPasswordConfirmation() {
+async function checkPasswordConfirmation() {
     const result = validatePasswordConfirmation(inputPassword.value, inputPasswordConfirmation.value);
     if (result !== PASS) {
         enableHelper(helperTextList[3], result)
@@ -43,8 +43,8 @@ function checkPasswordConfirmation() {
     return true;
 }
 
-function checkNickname() {
-    const result = validateNickname(inputNickname.value);
+async function checkNickname() {
+    const result = await validateNickname(inputNickname.value, true);
     if (result !== PASS) {
         enableHelper(helperTextList[4], result);
         return false;
@@ -53,19 +53,37 @@ function checkNickname() {
     return true;
 }
 
-function checkAll() {
-    const a = checkEmail();
-    const b = checkPassword();
-    const c = checkPasswordConfirmation();
-    const d = checkNickname();
+async function checkAll() {
+    return Promise.all([checkEmail(), checkPassword(), checkPasswordConfirmation(), checkNickname()])
+        .then(results => {
+            let validated = true;
+            for (const result of results) {
+                validated = result && validated;
+            }
+            return validated;
+        })
+        .then(validated => {
+            if (validated) {
+                buttonSignup.style.background = CSS_DEEP_MAGENTA;
+            } else {
+                buttonSignup.style.background = CSS_MAGENTA;
+            }
+            return validated
+        });
+}
 
-    const validated = a && b && c && d
-    if (validated) {
-        buttonSignup.style.background = CSS_DEEP_MAGENTA;
-    } else {
+async function notEmptyAll() {
+    let isEmpty = false;
+    if (inputEmail.value.trim() === "") isEmpty = true;
+    if (inputNickname.value.trim() === "") isEmpty = true;
+    if (inputPassword.value.trim() === "") isEmpty = true;
+    if (inputPasswordConfirmation.value.trim() === "") isEmpty = true;
+
+    if (isEmpty) {
         buttonSignup.style.background = CSS_MAGENTA;
+    } else {
+        buttonSignup.style.background = CSS_DEEP_MAGENTA;
     }
-    return validated;
 }
 
 inputImage.addEventListener("change", () => {
@@ -75,15 +93,25 @@ inputImage.addEventListener("change", () => {
     }
 });
 
-inputEmail.addEventListener("input", checkAll);
-inputPassword.addEventListener("input", checkAll);
-inputPasswordConfirmation.addEventListener("input", checkAll);
-inputNickname.addEventListener("input", checkAll);
+inputEmail.addEventListener("focusout", checkEmail);
+inputPassword.addEventListener("focusout", checkPassword);
+inputPasswordConfirmation.addEventListener("focusout", checkPasswordConfirmation);
+inputNickname.addEventListener("focusout", checkNickname);
+
+inputEmail.addEventListener("input", notEmptyAll);
+inputPassword.addEventListener("input", notEmptyAll)
+inputPasswordConfirmation.addEventListener("input", notEmptyAll)
+inputNickname.addEventListener("input", notEmptyAll)
+
 
 buttonSignup.addEventListener("click", () => {
-    if (checkAll()) {
-        history.back();
-    }
+    checkAll()
+        .then(validated => {
+            console.log(validated)
+            if (validated) {
+                history.back();
+            }
+        });
 });
 
 

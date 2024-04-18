@@ -50,8 +50,13 @@
                 </p>
             </div>
             <div class="input-item">
-                <label for="file">이미지</label>
-                <input type="file" name="file" id="file" class="post-input">
+                <label>이미지</label>
+                <input type="file" name="file" id="file" class="post-input" accept="image/*">
+                <label for="file" class="fake-file-input">
+                    <span>파일 선택</span>
+                    <span id="file-name-place">hello.txt</span>
+                </label>
+
             </div>
         </form>
         <button class="buttons long-button deep-magenta-button" id="edit-done">
