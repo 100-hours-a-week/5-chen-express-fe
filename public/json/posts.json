@@ -2,26 +2,122 @@
   "posts": [
     {
       "id": 1,
-      "title": "타 이 틀 1",
+      "title": "어제 늦게까지 일했더니 오늘 피곤해요",
       "like_count": 111,
       "comment_count": 222,
       "view_count": 333,
       "created_at": "2024-04-17T07:30:54.696Z",
       "author": {
-        "nickname": "더미 작성자 1",
-        "profile_image": "/images/profile-image.jpeg"
+        "nickname": "JohnDoe1985",
+        "profile_image": "/images/snake.jpg"
       }
     },
     {
       "id": 2,
-      "title": "타 이 틀 2",
+      "title": "최근에 새로운 취미를 찾아보려고 하는데 추천 좀 해주세요",
       "like_count": 1111,
       "comment_count": 2222,
       "view_count": 3333,
       "created_at": "2024-04-10T07:30:54.696Z",
       "author": {
-        "nickname": "더미 작성자 1",
-        "profile_image": "/images/jobs.jpeg"
+        "nickname": "ArtLover123",
+        "profile_image": "/images/cat.jpg"
+      }
+    },
+    {
+      "id": 3,
+      "title": "어떻게 하면 코딩 능력을 향상시킬 수 있을까요?",
+      "like_count": 500,
+      "comment_count": 1000,
+      "view_count": 1500,
+      "created_at": "2024-04-15T08:45:00.000Z",
+      "author": {
+        "nickname": "CodeNinja2024",
+        "profile_image": "/images/igu.jpg"
+      }
+    },
+    {
+      "id": 4,
+      "title": "매일 운동을 하는 것의 장점과 효과",
+      "like_count": 300,
+      "comment_count": 600,
+      "view_count": 900,
+      "created_at": "2024-04-12T09:15:00.000Z",
+      "author": {
+        "nickname": "FitnessGuru87",
+        "profile_image": "/images/jellyfish.jpg"
+      }
+    },
+    {
+      "id": 5,
+      "title": "요즘 빈티지 패션 트렌드가 유행인 이유",
+      "like_count": 700,
+      "comment_count": 1400,
+      "view_count": 2100,
+      "created_at": "2024-04-09T10:30:00.000Z",
+      "author": {
+        "nickname": "VintageFashionista",
+        "profile_image": "/images/cow.jpg"
+      }
+    },
+    {
+      "id": 6,
+      "title": "가족과 함께하는 홈시네마를 즐기는 방법",
+      "like_count": 900,
+      "comment_count": 1800,
+      "view_count": 2700,
+      "created_at": "2024-04-05T11:45:00.000Z",
+      "author": {
+        "nickname": "MovieBuffFamily",
+        "profile_image": "/images/parrot.jpg"
+      }
+    },
+    {
+      "id": 7,
+      "title": "오늘은 무슨 요리를 해볼까요?",
+      "like_count": 200,
+      "comment_count": 400,
+      "view_count": 600,
+      "created_at": "2024-04-03T12:00:00.000Z",
+      "author": {
+        "nickname": "ChefInTheMaking",
+        "profile_image": "/images/waterdog.jpg"
+      }
+    },
+    {
+      "id": 8,
+      "title": "독서의 매력과 효과에 대한 이야기",
+      "like_count": 600,
+      "comment_count": 1200,
+      "view_count": 1800,
+      "created_at": "2024-04-01T13:15:00.000Z",
+      "author": {
+        "nickname": "BookwormLife",
+        "profile_image": "/images/profile-image.jpeg"
+      }
+    },
+    {
+      "id": 9,
+      "title": "시간 관리의 중요성과 팁들",
+      "like_count": 400,
+      "comment_count": 800,
+      "view_count": 1200,
+      "created_at": "2024-03-29T14:30:00.000Z",
+      "author": {
+        "nickname": "TimeManagementPro",
+        "profile_image": "/images/polar-bear.jpg"
+      }
+    },
+    {
+      "id": 10,
+      "title": "여행 가고 싶은 곳이 있다면 공유해주세요",
+      "like_count": 800,
+      "comment_count": 1600,
+      "view_count": 2400,
+      "created_at": "2024-03-25T15:45:00.000Z",
+      "author": {
+        "nickname": "WanderlustExplorer",
+        "profile_image": "/images/alphaca.jpg"
       }
     }
   ]

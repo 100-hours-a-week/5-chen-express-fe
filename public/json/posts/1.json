@@ -1,14 +1,14 @@
 {
   "id": 1,
-  "title": "타 이 틀 1",
+  "title": "봄날의 햇살",
   "author": {
-    "nickname": "더미 작성자 1",
+    "nickname": "Sunflower22",
     "profile_image": "/images/profile-image.jpeg"
   },
-  "content": "awrgaergareglaehrgaeuhgoaerijga'pegjaeprogjeprogjaejrlgaklejrb tkljeranhgj ehraglerg;lej gje prgja egi j",
-  "like_count": 111,
-  "comment_count": 222,
-  "view_count": 333,
+  "content": "스티븐 잡스(Steve Jobs)는 혁신적인 기술 제품으로 유명한 미국의 기업가이자 발명가입니다. 1955년에 태어난 그는 애플(Apple)의 공동창업자이며, 맥킨토시(Macintosh), 아이폰(iPhone), 아이패드(iPad)와 같은 혁신적인 제품을 선보였습니다. 그는 디자인과 기술의 조화를 추구하며, 제품의 사용자 경험에 집중하는 접근으로 애플을 세계적인 기업으로 성장시켰습니다. 그의 업적은 현대 기술 산업에 큰 영향을 미쳤으며, 그의 열정과 비전은 많은 이들에게 영감을 주었습니다. 그는 2011년에 세상을 떠나기 전까지 애플의 CEO로 활약하며 기술 산업의 발전에 큰 기여를 했습니다.",
+  "like_count": 123,
+  "comment_count": 45,
+  "view_count": 678,
   "image": {
     "path": "/images/jobs.jpeg",
     "name": "jobs.jpeg"

@@ -214,9 +214,11 @@ if (headerImage !== null) {
 }
 
 
-backButton.addEventListener("click", (e) => {
-    history.back();
-    e.preventDefault();
-})
+if (backButton !== null) {
+    backButton.addEventListener("click", (e) => {
+        history.back();
+        e.preventDefault();
+    })
+}
 
 
