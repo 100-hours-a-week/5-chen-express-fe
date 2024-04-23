@@ -5,6 +5,9 @@ const buttonComment = document.getElementById("comment-button");
 const postPlace = document.getElementById("post-place");
 const commentPlace = document.getElementById("comment-place");
 
+const urlParams = new URLSearchParams(window.location.search);
+const post_id = urlParams.get('post_id');
+
 inputComment.addEventListener("input", () => {
     if (inputComment.value.trim().length == 0) {
         buttonComment.style.background = CSS_MAGENTA;
@@ -13,8 +16,7 @@ inputComment.addEventListener("input", () => {
     }
 })
 
-const DUMMY_POST_ID = 8;
-fetchServer(`/posts/${DUMMY_POST_ID}`)
+fetchServer(`/posts/${post_id}`)
     .then(response => response.json())
     .then(data => data.post)
     .then(post => {
@@ -40,7 +42,7 @@ fetchServer(`/posts/${DUMMY_POST_ID}`)
 
             </div>
             <div class="post-body-wrap">
-                <div class="post-photo" style="background: url('${post.image}') center; background-size: cover">
+                <div class="post-photo" style="background: url('${post.image.path}') center; background-size: cover">
                 </div>
                 <div class="post-body">
                     ${post.content}
@@ -68,7 +70,7 @@ fetchServer(`/posts/${DUMMY_POST_ID}`)
         })
     })
 
-fetchServer(`/posts/${DUMMY_POST_ID}/comments`)
+fetchServer(`/posts/${post_id}/comments`)
     .then(response => response.json())
     .then(data => data.comments)
     .then(comments => {

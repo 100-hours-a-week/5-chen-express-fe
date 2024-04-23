@@ -19,8 +19,18 @@ const detectColor = () => {
 titleInput.addEventListener("input", detectColor);
 contentInput.addEventListener("input", detectColor);
 
-// POST 이벤트로 바뀌면서 바뀔 예정
 writeButton.addEventListener("click", (evt) => {
-    window.location = "/posts/list.html"
+    const writeForm = document.getElementById("write-form")
+    const formData = new FormData(writeForm);
+
+    fetchServer("/posts", "POST", formData, false)
+        .then(response => {
+            if (response.ok) {
+                window.location = "/posts/detail.html"
+            } else {
+                console.warn("FAILED", response)
+            }
+        })
+
     evt.preventDefault();
 })

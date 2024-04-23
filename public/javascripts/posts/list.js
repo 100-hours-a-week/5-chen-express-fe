@@ -4,7 +4,7 @@ function makePostFromData(post) {
     const createdAt = new Date(Date.parse(post.created_at));
     const html =
         `
-                <a href="/posts/detail.html" class="post" id="post-template">
+                <a href="/posts/detail.html?post_id=${post.id}" class="post" id="post-template">
                     <div class="post-top">
                         <h1>${post.title}</h1>
                         <div class="post-metadata">
