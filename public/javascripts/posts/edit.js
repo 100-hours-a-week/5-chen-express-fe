@@ -27,11 +27,14 @@ buttonEditDone.addEventListener("click", () => {
     }
 })
 
-getJSON("/json/posts/1.json")
-    .then(data => {
-        inputTitle.value = data.title;
-        inputContent.value = data.content;
-        fileNamePlace.textContent = data.image.name;
+const DUMMY_POST_ID = 8;
+fetchServer(`/posts/${DUMMY_POST_ID}`)
+    .then(response => response.json())
+    .then(data => data.post)
+    .then(post => {
+        inputTitle.value = post.title;
+        inputContent.value = post.content;
+        fileNamePlace.textContent = post.image;
     })
 
 inputFile.addEventListener("change", () => {
@@ -41,6 +44,5 @@ inputFile.addEventListener("change", () => {
     }
     for (const file of files) {
         fileNamePlace.textContent = file.name;
-
     }
 })

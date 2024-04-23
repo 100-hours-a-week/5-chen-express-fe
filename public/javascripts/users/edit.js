@@ -9,12 +9,14 @@ const inputImage = document.getElementById("profile-image");
 const displayImage = document.getElementById("display-image");
 const placeEmail = document.getElementById("email-place");
 
-getJSON("/json/users/me.json").then((data) => {
-    placeEmail.textContent = data.email;
-    inputNickname.placeholder = data.nickname;
-    displayImage.style.background = `url(${data.profile_image}) center`;
-    displayImage.style.backgroundSize = 'cover';
-})
+fetchServer("/users/me")
+    .then(response => response.json())
+    .then(data => {
+        placeEmail.textContent = data.user.email;
+        inputNickname.placeholder = data.user.nickname;
+        displayImage.style.background = `url(${data.user.profile_image}) center`;
+        displayImage.style.backgroundSize = 'cover';
+    });
 
 buttonExitUser.addEventListener("click", () => {
     modalOn("modal-exit");

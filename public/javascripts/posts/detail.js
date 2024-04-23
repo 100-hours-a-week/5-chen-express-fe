@@ -13,9 +13,12 @@ inputComment.addEventListener("input", () => {
     }
 })
 
-getJSON("/json/posts/1.json")
+const DUMMY_POST_ID = 8;
+fetchServer(`/posts/${DUMMY_POST_ID}`)
+    .then(response => response.json())
+    .then(data => data.post)
     .then(post => {
-        const date = new Date(post.created_at);
+        const date = new Date(post.created_at)
         const html = `
         <div id="post-container">
             <div class="post-head">
@@ -37,7 +40,7 @@ getJSON("/json/posts/1.json")
 
             </div>
             <div class="post-body-wrap">
-                <div class="post-photo" style="background: url('${post.image.path}') center; background-size: cover">
+                <div class="post-photo" style="background: url('${post.image}') center; background-size: cover">
                 </div>
                 <div class="post-body">
                     ${post.content}
@@ -65,10 +68,9 @@ getJSON("/json/posts/1.json")
         })
     })
 
-getJSON("/json/posts/1/comments.json")
-    .then(data => {
-        return data.comments
-    })
+fetchServer(`/posts/${DUMMY_POST_ID}/comments`)
+    .then(response => response.json())
+    .then(data => data.comments)
     .then(comments => {
         for (const comment of comments) {
             const commentDOM = fromHTML(`<li class="comment-wrap">

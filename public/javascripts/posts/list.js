@@ -26,11 +26,14 @@ function makePostFromData(post) {
 const postsContainer = document.getElementById("post-parent");
 
 
-getJSON("/json/posts.json").then(data => {
-    for (const post of data.posts) {
-        postsContainer.appendChild(makePostFromData(post))
-    }
-})
+fetchServer("/posts",)
+    .then(response => response.json())
+    .then(data => {
+        const posts = data.posts;
+        for (const post of posts) {
+            postsContainer.appendChild(makePostFromData(post))
+        }
+    })
 
 
 // TODO : 무한 스크롤
