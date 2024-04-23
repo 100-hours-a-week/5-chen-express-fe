@@ -127,6 +127,8 @@ async function validateEmail(userEmail, validateDuplicate = false) {
                 return data.email_exist
             })
 
+        console.log(isDuplicated)
+
         if (isDuplicated) {
             return W_EMAIL_DUPLICATED;
         }
@@ -161,7 +163,7 @@ function displayImageOnChange(inputImage, displayImage) {
 }
 
 // JSON파일을 object로 가져오기
-async function fetchServer(path, method = "GET", data = {}) {
+async function fetchServer(path, method = "GET", data = {}, isJson = true) {
     console.log(`fetch start : ${path}`)
     if (method === "GET" || method === "HEAD") {
         return fetch("http://localhost:8080" + path, {
@@ -171,6 +173,12 @@ async function fetchServer(path, method = "GET", data = {}) {
             method: method,
         })
     }
+    if (!isJson) {
+        return fetch("http://localhost:8080" + path, {
+            method: method,
+            body: data,
+        })
+    }
     return fetch("http://localhost:8080" + path, {
         headers: {
             "Content-Type": "application/json",
@@ -178,6 +186,7 @@ async function fetchServer(path, method = "GET", data = {}) {
         method: method,
         body: JSON.stringify(data),
     })
+
 }
 
 // 날짜 포맷팅

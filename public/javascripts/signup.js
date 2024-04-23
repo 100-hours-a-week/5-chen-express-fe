@@ -107,10 +107,21 @@ inputNickname.addEventListener("input", notEmptyAll)
 buttonSignup.addEventListener("click", () => {
     checkAll()
         .then(validated => {
-            console.log(validated)
-            if (validated) {
-                history.back();
+            if (!validated) throw Error("not validated")
+            const signUpForm = document.getElementById("signup-form");
+            const formData = new FormData(signUpForm);
+            console.log(...formData.entries())
+            return fetchServer("/signup", "POST", formData, false)
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location = "/login.html"
+            } else {
+                console.warn(response);
             }
+        })
+        .catch(err => {
+            console.warn(err);
         });
 });
 
