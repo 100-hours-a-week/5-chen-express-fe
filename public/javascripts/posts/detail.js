@@ -7,6 +7,8 @@ const commentPlace = document.getElementById("comment-place");
 
 const commentForm = document.getElementById("write-comment-form");
 const buttonDeletePost = document.getElementById("delete-post-button");
+const buttonDeleteComment = document.getElementById("delete-comment-button");
+const modalDeleteId = 'modal-delete-comment'
 
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
@@ -41,6 +43,17 @@ buttonDeletePost.addEventListener("click", (evt) => {
         .then(data => {
             console.log(data);
             window.location = "/posts/list.html";
+        });
+})
+
+buttonDeleteComment.addEventListener("click", (evt) => {
+    const modal = document.getElementById(modalDeleteId);
+    const comment_id = modal.dataset.id;
+    fetchServer(`/comments/${comment_id}`, "DELETE")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            window.location = `/posts/detail.html?post_id=${post_id}`;
         });
 })
 
@@ -115,7 +128,7 @@ fetchServer(`/posts/${post_id}/comments`)
                             수정
                         </button>
                         <button class="small-button delete-comment"
-                        onclick="modalOn('modal-delete-comment');">
+                        onclick="modalOn('${modalDeleteId}',${comment.id});">
                             삭제
                         </button>
                     </div>

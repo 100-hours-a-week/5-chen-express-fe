@@ -18,8 +18,11 @@ function dimmed(flag = true) {
 }
 
 // 모달 켜기
-function modalOn(modalId) {
+function modalOn(modalId, id = null) {
     let modalElem = document.getElementById(modalId);
+    if (id != null) {
+        modalElem.dataset.id = id.toString();
+    }
     modalElem.style.display = "flex";
     dimmed()
     document.body.style.overflow = "hidden";
@@ -29,6 +32,7 @@ function modalOn(modalId) {
 function modalOff() {
     let modalList = document.getElementsByClassName("modal");
     for (let item of modalList) {
+        delete item.dataset.id
         if (item.style.display != "none") {
             item.style.display = "none"
         }
