@@ -1,3 +1,5 @@
+import {fetchServer, fromHTML, formatDateTime} from "/javascripts/fetch.js"
+
 console.log("LIST JS")
 
 function makePostFromData(post) {

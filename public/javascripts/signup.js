@@ -1,3 +1,10 @@
+import {displayImageOnChange, fetchServer} from "/javascripts/fetch.js";
+import {
+    validateEmail, validateNickname, validatePassword,
+    validatePasswordConfirmation, PASS, enableHelper, disableHelper
+} from "/javascripts/validator.js";
+import {CSS_DEEP_MAGENTA, CSS_MAGENTA} from "/javascripts/constant_css.js";
+
 console.log("SIGN UP JS");
 
 const inputImage = document.getElementById("profile-image");

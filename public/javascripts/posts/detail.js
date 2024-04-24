@@ -1,3 +1,8 @@
+import {fetchServer, formatDateTime, fromHTML} from "/javascripts/fetch.js";
+import {modalOn} from "/javascripts/modal.js";
+import {CSS_MAGENTA, CSS_DEEP_MAGENTA} from "/javascripts/constant_css";
+
+
 console.log("DETAIL JS");
 
 const inputComment = document.getElementById("comment-write");
@@ -13,7 +18,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
 
 inputComment.addEventListener("input", () => {
-    if (inputComment.value.trim().length == 0) {
+    if (inputComment.value.trim().length === 0) {
         buttonComment.style.background = CSS_MAGENTA;
     } else {
         buttonComment.style.background = CSS_DEEP_MAGENTA;
@@ -22,7 +27,7 @@ inputComment.addEventListener("input", () => {
 
 buttonComment.addEventListener("click", (e) => {
     console.log(buttonComment.textContent)
-    if (inputComment.value.trim().length == 0) {
+    if (inputComment.value.trim().length === 0) {
         return;
     }
 
@@ -48,7 +53,7 @@ buttonComment.addEventListener("click", (e) => {
     window.location.reload();
 })
 
-buttonDeletePost.addEventListener("click", (evt) => {
+buttonDeletePost.addEventListener("click", () => {
     fetchServer(`/posts/${post_id}`, "DELETE")
         .then(response => response.json())
         .then(data => {
@@ -57,7 +62,7 @@ buttonDeletePost.addEventListener("click", (evt) => {
         });
 })
 
-buttonDeleteComment.addEventListener("click", (evt) => {
+buttonDeleteComment.addEventListener("click", () => {
     const modal = document.getElementById(modalDeleteId);
     const comment_id = modal.dataset.id;
     fetchServer(`/comments/${comment_id}`, "DELETE")

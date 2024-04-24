@@ -1,3 +1,7 @@
+import {fetchServer, displayImageOnChange} from "/javascripts/fetch.js";
+import {validateNickname, enableHelper, disableHelper, PASS} from "/javascripts/validator.js";
+import {modalOn} from "/javascripts/modal.js";
+
 console.log("USER EDIT JS");
 
 const buttonExitUser = document.getElementById("exit-user");

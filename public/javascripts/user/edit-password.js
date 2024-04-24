@@ -1,3 +1,13 @@
+import {
+    disableHelper,
+    enableHelper,
+    PASS,
+    validatePassword,
+    validatePasswordConfirmation
+} from "/javascripts/validator.js";
+import {fetchServer} from "/javascripts/fetch.js";
+import {CSS_DEEP_MAGENTA, CSS_MAGENTA} from "/javascripts/constant_css.js";
+
 console.log("EDIT PASSWORD JS");
 
 const inputPassword = document.getElementById("password");

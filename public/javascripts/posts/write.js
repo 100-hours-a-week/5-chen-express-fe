@@ -1,3 +1,5 @@
+import {fetchServer} from "/javascripts/fetch.js"
+
 console.log("WRITE JS")
 
 const titleInput = document.getElementById("title");
@@ -9,11 +11,7 @@ function isBothNotEmpty() {
 }
 
 const detectColor = () => {
-    if (isBothNotEmpty()) {
-        writeButton.disabled = false;
-    } else {
-        writeButton.disabled = true;
-    }
+    writeButton.disabled = !isBothNotEmpty();
 }
 
 titleInput.addEventListener("input", detectColor);
@@ -26,8 +24,6 @@ writeButton.addEventListener("click", (evt) => {
     fetchServer("/posts", "POST", formData, false)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
-            console.log(data.post)
             window.location = `/posts/detail.html?post_id=${data.post.id}`;
         })
 
