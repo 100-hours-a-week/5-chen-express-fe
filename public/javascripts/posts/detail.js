@@ -5,7 +5,6 @@ const buttonComment = document.getElementById("comment-button");
 const postPlace = document.getElementById("post-place");
 const commentPlace = document.getElementById("comment-place");
 
-const commentForm = document.getElementById("write-comment-form");
 const buttonDeletePost = document.getElementById("delete-post-button");
 const buttonDeleteComment = document.getElementById("delete-comment-button");
 const modalDeleteId = 'modal-delete-comment'
@@ -22,19 +21,31 @@ inputComment.addEventListener("input", () => {
 })
 
 buttonComment.addEventListener("click", (e) => {
+    console.log(buttonComment.textContent)
     if (inputComment.value.trim().length == 0) {
         return;
     }
-    const formData = new FormData(commentForm);
-    fetchServer(`/comments`, "POST", {
-        post_id: post_id,
-        content: inputComment.value
-    }).then(response => response.json())
-        .then(data => {
-            console.log(data)
-        })
-    window.location.reload();
+
+    if (buttonComment.textContent === "댓글 등록") {
+        fetchServer(`/comments`, "POST", {
+            post_id: post_id,
+            content: inputComment.value
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+    if (buttonComment.textContent === "댓글 수정") {
+        fetchServer(`/comments/${buttonComment.dataset.id}`, "POST", {
+            content: inputComment.value
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
     e.preventDefault();
+    window.location.reload();
 })
 
 buttonDeletePost.addEventListener("click", (evt) => {
@@ -112,6 +123,12 @@ fetchServer(`/posts/${post_id}`)
         })
     })
 
+function editComment(content, id) {
+    buttonComment.textContent = '댓글 수정';
+    inputComment.value = content
+    buttonComment.dataset.id = id;
+}
+
 fetchServer(`/posts/${post_id}/comments`)
     .then(response => response.json())
     .then(data => data.comments)
@@ -124,7 +141,7 @@ fetchServer(`/posts/${post_id}/comments`)
                     <span>${comment.author.nickname}</span>
                     <span class="comment-date">${formatDateTime(new Date(comment.created_at))}</span>
                     <div class="post-head-buttons">
-                        <button class="small-button">
+                        <button class="small-button" onclick="editComment('${comment.content}',${comment.id})">
                             수정
                         </button>
                         <button class="small-button delete-comment"
