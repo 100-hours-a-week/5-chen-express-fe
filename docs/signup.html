@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/default.css" type="text/css"/>
+    <link rel="stylesheet" href="css/signup.css" type="text/css"/>
+    <script src="/javascripts/default.js" defer></script>
+    <script src="/javascripts/signup.js" defer></script>
+    <title>Community - 회원가입</title>
+</head>
+<body>
+<header>
+    <div id="header-wrap">
+        <p id="back">
+            <span><</span>
+        </p>
+        <a href="/">
+            <h1>
+                아무말 대잔치
+            </h1>
+        </a>
+        <div>
+
+        </div>
+    </div>
+</header>
+<section class="wrap">
+    <main class="box-small">
+        <h1 class="page-title">
+            회원가입
+        </h1>
+        <form class="input-box" id="signup-form">
+            <div class="input-item">
+                <label>
+                    프로필 사진
+                </label>
+                <div class="circle-box">
+                    <label class="circle" for="profile-image" id="display-profile-img">
+                        <span class="lt cross"></span>
+                        <span class="rt cross"></span>
+                        <span class="lb cross"></span>
+                        <span class="rb cross"></span>
+                    </label>
+                </div>
+                <input type="file" name="image" id="profile-image" alt="profile-image" accept="image/*">
+                <p class="helper-text">
+                    * 사진 헬퍼
+                </p>
+            </div>
+            <div class="input-item">
+                <label for="email">
+                    이메일<span class="star">*</span>
+                </label>
+                <input type="text" name="email" id="email" placeholder="이메일을 입력하세요." class="default-input">
+                <p class="helper-text">
+                    * 이메일 헬퍼
+                </p>
+            </div>
+            <div class="input-item">
+                <label for="password">
+                    비밀번호<span class="star">*</span>
+                </label>
+                <input type="password" name="password" id="password" placeholder="비밀번호를 입력하세요." class="default-input">
+                <p class="helper-text">
+                    * 비밀번호 헬퍼
+                </p>
+            </div>
+            <div class="input-item">
+                <label for="password-confirmation">
+                    비밀번호 확인<span class="star">*</span>
+                </label>
+                <input type="password" name="password-confirmation" id="password-confirmation"
+                       placeholder="비밀번호를 한번 더 입력하세요." class="default-input">
+                <p class="helper-text">
+                    * 비밀번호 확인 헬퍼
+                </p>
+            </div>
+            <div class="input-item">
+                <label for="nickname">
+                    닉네임<span class="star">*</span>
+                </label>
+                <input type="text" name="nickname" id="nickname" placeholder="닉네임을 입력하세요." class="default-input">
+                <p class="helper-text">
+                    * 닉네임 확인 헬퍼
+                </p>
+            </div>
+        </form>
+        <button class="long-button buttons magenta-button" id="signup-button">
+            회원가입
+        </button>
+        <a href="login.html">
+            <p class="additional-button">로그인하러 가기</p>
+        </a>
+    </main>
+</section>
+
+</body>
+</html>

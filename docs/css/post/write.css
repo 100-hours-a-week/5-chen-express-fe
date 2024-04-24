@@ -1,0 +1,57 @@
+input[type=file] {
+    border: none;
+}
+
+input[type=text] {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.input-box {
+    row-gap: 20px;
+}
+
+.post-title > input {
+    height: 64px;
+}
+
+.post-content > textarea {
+    height: 276px;
+    padding-top: 15px;
+    resize: vertical;
+}
+
+.post-input {
+    line-height: 25px;
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+    background: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.input-item > input {
+
+}
+
+.helper-text {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.input-item > label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#write-done-button {
+    align-self: center;
+}
+
+
+#write-done-button:disabled {
+    background: var(--magenta);
+}

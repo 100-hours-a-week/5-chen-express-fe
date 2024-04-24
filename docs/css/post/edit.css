@@ -1,0 +1,85 @@
+input[type=file] {
+    border: none;
+}
+
+input[type=text] {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.input-box {
+    row-gap: 20px;
+}
+
+.post-title > textarea {
+    padding-top: 15px;
+    font-size: 16px;
+    resize: none;
+}
+
+.post-content > textarea {
+    height: 276px;
+    padding-top: 15px;
+    resize: vertical;
+}
+
+.post-input {
+    line-height: 25px;
+    border: none;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.16);
+    background: transparent;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.helper-text {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.input-item > label {
+    font-size: 16px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.fake-file-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fake-file-input > span:first-child {
+    display: flex;
+
+    margin: 0 4px 0 0;
+    padding: 1px 6px;
+
+    border-radius: 3px;
+    border: black solid 1px;
+
+    font-weight: 400;
+    font-size: 13.3333px;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.fake-file-input > span:first-child:hover {
+    background: var(--profile-img-grey);
+}
+
+.fake-file-input > span:last-child {
+    font-weight: 400;
+}
+
+#file {
+    visibility: hidden;
+    height: 5px;
+}
+
+
+
