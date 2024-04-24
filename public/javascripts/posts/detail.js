@@ -6,6 +6,7 @@ const postPlace = document.getElementById("post-place");
 const commentPlace = document.getElementById("comment-place");
 
 const commentForm = document.getElementById("write-comment-form");
+const buttonDeletePost = document.getElementById("delete-post-button");
 
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
@@ -32,6 +33,15 @@ buttonComment.addEventListener("click", (e) => {
         })
     window.location.reload();
     e.preventDefault();
+})
+
+buttonDeletePost.addEventListener("click", (evt) => {
+    fetchServer(`/posts/${post_id}`, "DELETE")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            window.location = "/posts/list.html";
+        });
 })
 
 
