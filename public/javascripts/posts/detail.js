@@ -5,6 +5,8 @@ const buttonComment = document.getElementById("comment-button");
 const postPlace = document.getElementById("post-place");
 const commentPlace = document.getElementById("comment-place");
 
+const commentForm = document.getElementById("write-comment-form");
+
 const urlParams = new URLSearchParams(window.location.search);
 const post_id = urlParams.get('post_id');
 
@@ -15,6 +17,23 @@ inputComment.addEventListener("input", () => {
         buttonComment.style.background = CSS_DEEP_MAGENTA;
     }
 })
+
+buttonComment.addEventListener("click", (e) => {
+    if (inputComment.value.trim().length == 0) {
+        return;
+    }
+    const formData = new FormData(commentForm);
+    fetchServer(`/comments`, "POST", {
+        post_id: post_id,
+        content: inputComment.value
+    }).then(response => response.json())
+        .then(data => {
+            console.log(data)
+        })
+    window.location.reload();
+    e.preventDefault();
+})
+
 
 fetchServer(`/posts/${post_id}`)
     .then(response => response.json())
@@ -35,7 +54,7 @@ fetchServer(`/posts/${post_id}`)
                     </div>
                     <span class="post-created-at">${formatDateTime(date)}</span>
                     <div class="post-head-buttons">
-                        <a href="/posts/edit.html" id="edit-post" class="small-button">수정</a>
+                        <a href="/posts/edit.html?post_id=${post.id}" id="edit-post" class="small-button">수정</a>
                         <button id="delete-post" class="small-button">삭제</button>
                     </div>
                 </div>

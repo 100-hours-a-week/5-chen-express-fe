@@ -7,6 +7,19 @@ const helperTextList = document.getElementsByClassName("helper-text");
 const inputFile = document.getElementById("file");
 const fileNamePlace = document.getElementById("file-name-place");
 
+const editForm = document.getElementById("post-edit-form");
+
+const urlParams = new URLSearchParams(window.location.search);
+const post_id = urlParams.get('post_id');
+
+fetchServer(`/posts/${post_id}`)
+    .then(response => response.json())
+    .then(data => data.post)
+    .then(post => {
+        inputTitle.value = post.title;
+        inputContent.value = post.content;
+        fileNamePlace.textContent = post.image.name;
+    })
 
 buttonEditDone.addEventListener("click", () => {
     let validated = true;
@@ -23,19 +36,16 @@ buttonEditDone.addEventListener("click", () => {
         disableHelper(helperTextList[1])
     }
     if (validated) {
-        window.location = "/posts/detail.html"
+        const formData = new FormData(editForm);
+        fetchServer(`/posts/${post_id}`, "POST", formData, false)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                window.location = `/posts/detail.html?post_id=${post_id}`
+            })
+
     }
 })
-
-const DUMMY_POST_ID = 8;
-fetchServer(`/posts/${DUMMY_POST_ID}`)
-    .then(response => response.json())
-    .then(data => data.post)
-    .then(post => {
-        inputTitle.value = post.title;
-        inputContent.value = post.content;
-        fileNamePlace.textContent = post.image;
-    })
 
 inputFile.addEventListener("change", () => {
     const files = inputFile.files;

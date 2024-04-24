@@ -24,12 +24,11 @@ writeButton.addEventListener("click", (evt) => {
     const formData = new FormData(writeForm);
 
     fetchServer("/posts", "POST", formData, false)
-        .then(response => {
-            if (response.ok) {
-                window.location = "/posts/detail.html"
-            } else {
-                console.warn("FAILED", response)
-            }
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            console.log(data.post)
+            window.location = `/posts/detail.html?post_id=${data.post.id}`;
         })
 
     evt.preventDefault();

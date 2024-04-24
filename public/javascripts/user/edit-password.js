@@ -5,6 +5,9 @@ const inputPasswordConfirmation = document.getElementById("password-confirmation
 const helperTextList = document.getElementsByClassName("helper-text");
 const buttonEdit = document.getElementById("edit-submit");
 
+const editForm = document.getElementById("edit-password-form");
+
+
 function validateEditPassword() {
     const passwordResult = validatePassword(inputPassword.value)
     const confirmationResult = validatePasswordConfirmation(inputPassword.value, inputPasswordConfirmation.value);
@@ -48,8 +51,15 @@ buttonEdit.addEventListener("click", () => {
         disableHelper(helperTextList[0])
         disableHelper(helperTextList[1])
 
-        // TODO : FORM SUBMIT
-        history.back();
+        const formData = new FormData(editForm);
+        fetchServer("/users/me/password", "PUT", formData, false)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                alert("수정되었습니다.")
+                window.location.reload()
+            })
+
     }
 })
 
