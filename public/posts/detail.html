@@ -35,9 +35,9 @@
     <main class="box-mid">
         <article class="post-detail-wrap" id="post-place">
         </article>
-        <div class="comments-write">
+        <div class="comments-write" id="write-comment-form">
             <textarea placeholder="댓글을 남겨주세요!" id="comment-write"></textarea>
-            <button class="short-button magenta-button" id="comment-button">댓글 등록</button>
+            <button class="short-button magenta-button" id="comment-button" data-mode="write">댓글 등록</button>
         </div>
         <ul class="comments-list" id="comment-place">
         </ul>
@@ -52,7 +52,7 @@
     </p>
     <div>
         <button class="modal-button cancel modal-cancel">취소</button>
-        <button class="modal-button confirm">확인</button>
+        <button class="modal-button confirm" id="delete-post-button">확인</button>
     </div>
 </aside>
 <aside class="modal" id="modal-delete-comment">
@@ -64,7 +64,7 @@
     </p>
     <div>
         <button class="modal-button cancel">취소</button>
-        <button class="modal-button confirm">확인</button>
+        <button class="modal-button confirm" id="delete-comment-button">확인</button>
     </div>
 </aside>
 <aside id="dimmed">

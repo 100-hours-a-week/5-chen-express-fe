@@ -26,38 +26,37 @@ loginButton.addEventListener('click', async () => {
         return;
     }
 
-    getJSON("/json/users.json").then((data) => {
-        for (const user of data.users) {
-            if (userEmail === user.email && userPassword === user.password) {
-                return true;
+    fetchServer("/login", "POST",
+        {
+            email: userEmail,
+            password: userPassword
+        }
+    )
+        .then(response => response.ok)
+        .then((match) => {
+            if (!match) {
+                disableHelper(helperTextList[0])
+                enableHelper(helperTextList[1], W_USER_NOT_FOUND)
+                return;
             }
-        }
-        return false;
-    }).then((match) => {
-        if (!match) {
-            disableHelper(helperTextList[0])
-            enableHelper(helperTextList[1], W_USER_NOT_FOUND)
-            return;
-        }
 
-        disableHelper(helperTextList[0]);
-        disableHelper(helperTextList[1]);
+            disableHelper(helperTextList[0]);
+            disableHelper(helperTextList[1]);
 
-        loginButton.style.background = CSS_DEEP_MAGENTA;
+            loginButton.style.background = CSS_DEEP_MAGENTA;
 
-        let seconds = 3
-        loginButton.innerText = seconds;
-        const timer = setInterval(() => {
-            seconds -= 1;
+            let seconds = 3
             loginButton.innerText = seconds;
-        }, 1000);
-        setTimeout(() => {
-            window.location = "/posts/list.html"
-        }, 2900)
-        setTimeout(() => {
-            loginButton.innerText = "로그인";
-            clearInterval(timer)
-        }, 3333)
-    })
-
+            const timer = setInterval(() => {
+                seconds -= 1;
+                loginButton.innerText = seconds;
+            }, 1000);
+            setTimeout(() => {
+                window.location = "/posts/list.html"
+            }, 2900)
+            setTimeout(() => {
+                loginButton.innerText = "로그인";
+                clearInterval(timer)
+            }, 3333)
+        })
 })

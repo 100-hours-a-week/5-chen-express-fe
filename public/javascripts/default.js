@@ -18,8 +18,11 @@ function dimmed(flag = true) {
 }
 
 // 모달 켜기
-function modalOn(modalId) {
+function modalOn(modalId, id = null) {
     let modalElem = document.getElementById(modalId);
+    if (id != null) {
+        modalElem.dataset.id = id.toString();
+    }
     modalElem.style.display = "flex";
     dimmed()
     document.body.style.overflow = "hidden";
@@ -29,6 +32,7 @@ function modalOn(modalId) {
 function modalOff() {
     let modalList = document.getElementsByClassName("modal");
     for (let item of modalList) {
+        delete item.dataset.id
         if (item.style.display != "none") {
             item.style.display = "none"
         }
@@ -51,16 +55,14 @@ async function validateNickname(nickname, validateDuplicate = false) {
         return W_NICK_BLANK;
     }
     if (validateDuplicate) {
-        const isDuplicated = await getJSON("/json/users.json")
-            .then((data) => {
-                const users = data.users;
-                for (const user of users) {
-                    if (nickname === user.nickname) {
-                        return true;
-                    }
-                }
-                return false;
-            });
+        const queryString = new URLSearchParams({
+            "nickname": nickname
+        }).toString()
+        const isDuplicated = await fetchServer(`/users/exist?${queryString}`)
+            .then(async response => {
+                const data = await response.json();
+                return data.nickname_exist
+            })
         if (isDuplicated) {
             return W_NICK_DUPLICATED;
         }
@@ -119,16 +121,18 @@ async function validateEmail(userEmail, validateDuplicate = false) {
     }
 
     if (validateDuplicate) {
-        const isDuplicated = await getJSON("/json/users.json")
-            .then((data) => {
-                const users = data.users;
-                for (const user of users) {
-                    if (userEmail === user.email) {
-                        return true;
-                    }
-                }
-                return false;
-            });
+        const queryString = new URLSearchParams({
+            "email": userEmail
+        }).toString()
+
+        const isDuplicated = await fetchServer(`/users/exist?${queryString}`)
+            .then(response => response.json())
+            .then(data => {
+                return data.email_exist
+            })
+
+        console.log(isDuplicated)
+
         if (isDuplicated) {
             return W_EMAIL_DUPLICATED;
         }
@@ -163,21 +167,30 @@ function displayImageOnChange(inputImage, displayImage) {
 }
 
 // JSON파일을 object로 가져오기
-async function getJSON(path) {
-    if (!path.endsWith(".json")) {
-        path = path + ".json"
+async function fetchServer(path, method = "GET", data = {}, isJson = true) {
+    console.log(`fetch start : ${path}`)
+    if (method === "GET" || method === "HEAD") {
+        return fetch("http://localhost:8080" + path, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+            method: method,
+        })
     }
-    return fetch(path)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json()
-        }).catch(err => {
-            console.warn(err)
-        }).finally(() => {
-            console.log(`fetch done : ${path}`)
-        });
+    if (!isJson) {
+        return fetch("http://localhost:8080" + path, {
+            method: method,
+            body: data,
+        })
+    }
+    return fetch("http://localhost:8080" + path, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        method: method,
+        body: JSON.stringify(data),
+    })
+
 }
 
 // 날짜 포맷팅
@@ -218,9 +231,11 @@ if (headerImage !== null) {
         }
     })
 
-    getJSON("/json/users/me.json")
-        .then((data) => {
-            headerImage.style.background = `url(${data.profile_image}) center`;
+    fetchServer("/users/me")
+        .then(response => response.json())
+        .then(data => {
+            const user = data.user;
+            headerImage.style.background = `url(${user.profile_image}) center`;
             headerImage.style.backgroundSize = "cover";
         })
 }
