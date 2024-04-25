@@ -15,7 +15,7 @@ const inputPasswordConfirmation = document.getElementById("password-confirmation
 const helperTextList = document.getElementsByClassName("helper-text");
 const buttonEdit = document.getElementById("edit-submit");
 
-const editForm = document.getElementById("edit-password-form");
+// const editForm = document.getElementById("edit-password-form");
 
 
 function validateEditPassword() {
@@ -61,8 +61,7 @@ buttonEdit.addEventListener("click", () => {
         disableHelper(helperTextList[0])
         disableHelper(helperTextList[1])
 
-        const formData = new FormData(editForm);
-        fetchServer("/users/me/password", "PUT", formData, false)
+        fetchServer("/users/me/password", "PUT", {password: inputPassword.value})
             .then(response => response.json())
             .then(data => {
                 console.log(data)
