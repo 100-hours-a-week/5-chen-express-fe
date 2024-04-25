@@ -1,6 +1,6 @@
-import {validateEmail, validatePassword, enableHelper, disableHelper, PASS} from "./validator.js"
-import {fetchServer} from "./fetch.js";
-import {CSS_DEEP_MAGENTA} from "./constant_css.js";
+import {validateEmail, validatePassword, enableHelper, disableHelper, PASS} from "/javascripts/validator.js"
+import {fetchServer} from "/javascripts/fetch.js";
+import {CSS_DEEP_MAGENTA} from "/javascripts/constant_css.js";
 
 console.log("LOGIN JS")
 
