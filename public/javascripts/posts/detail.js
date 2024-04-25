@@ -1,7 +1,6 @@
 import {fetchServer, formatDateTime, fromHTML} from "/javascripts/fetch.js";
 import {modalOn} from "/javascripts/modal.js";
-import {CSS_MAGENTA, CSS_DEEP_MAGENTA} from "/javascripts/constant_css";
-
+import {CSS_MAGENTA, CSS_DEEP_MAGENTA} from "/javascripts/constant_css.js";
 
 console.log("DETAIL JS");
 
@@ -130,11 +129,12 @@ fetchServer(`/posts/${post_id}`)
         })
     })
 
-function editComment(content, id) {
+window.editComment = (content, id) => {
     buttonComment.textContent = BUTTON_TXT_EDIT_COMMENT;
     inputComment.value = content
     buttonComment.dataset.id = id;
 }
+window.modalOn = modalOn
 
 fetchServer(`/posts/${post_id}/comments`)
     .then(response => response.json())
