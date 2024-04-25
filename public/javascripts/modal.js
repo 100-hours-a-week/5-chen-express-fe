@@ -1,9 +1,3 @@
-document.querySelectorAll(".modal-button.cancel")
-    .forEach((v, k, p) => {
-        v.addEventListener("click", modalOff)
-    })
-
-
 // 딤 처리
 export const dimmed = (flag = true) => {
     const dimmedElem = document.getElementById("dimmed");
@@ -37,3 +31,8 @@ export const modalOff = () => {
     dimmed(false)
     document.body.style.overflow = "visible";
 }
+
+document.querySelectorAll(".modal-button.cancel")
+    .forEach((v, k, p) => {
+        v.addEventListener("click", modalOff)
+    })
