@@ -2,20 +2,22 @@
 const SERVER_URL = "http://localhost:8080"
 
 export async function fetchServer(path, method = "GET", data = {}, isJson = true) {
-    console.log(`fetch start : ${path}`)
+    console.log(`fetch start${!isJson ? '' : ' JSON'} : ${method} ${path}`);
+
     const requestInit = {
         method: method
-    }
+    };
+
     if (isJson) {
-        requestInit.headers = {"Content-Type": "application/json",}
+        requestInit.headers = {"Content-Type": "application/json",};
         if (method !== "GET" && method !== "HEAD") {
             requestInit.body = JSON.stringify(data);
         }
     } else {
-        requestInit.body = JSON.stringify(data);
+        requestInit.body = data;
     }
 
-    return fetch(`${SERVER_URL}${path}`, requestInit)
+    return fetch(`${SERVER_URL}${path}`, requestInit);
 }
 
 // 날짜 포맷팅
