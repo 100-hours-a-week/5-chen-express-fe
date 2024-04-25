@@ -6,7 +6,7 @@ const titleInput = document.getElementById("title");
 const contentInput = document.getElementById("content");
 const writeButton = document.getElementById("write-done-button")
 
-function isBothNotEmpty() {
+const isBothNotEmpty = () => {
     return titleInput.value.length > 0 && contentInput.value.length > 0
 }
 

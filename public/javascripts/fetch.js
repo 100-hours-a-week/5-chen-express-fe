@@ -1,7 +1,7 @@
 // JSON파일을 object로 가져오기
 const SERVER_URL = "http://localhost:8080"
 
-export async function fetchServer(path, method = "GET", data = {}, isJson = true) {
+export const fetchServer = async (path, method = "GET", data = {}, isJson = true) => {
     console.log(`fetch start${!isJson ? '' : ' JSON'} : ${method} ${path}`);
 
     const requestInit = {
@@ -21,7 +21,7 @@ export async function fetchServer(path, method = "GET", data = {}, isJson = true
 }
 
 // 날짜 포맷팅
-export function formatDateTime(date) {
+export const formatDateTime = (date) => {
     let month = date.getMonth() + 1;
     const year = date.getFullYear();
     let day = date.getDate();
@@ -45,7 +45,7 @@ export function formatDateTime(date) {
 }
 
 // html string -> dom element로 변환
-export function fromHTML(html, trim = true) {
+export const fromHTML = (html, trim = true) => {
     html = trim ? html.trim() : html;
     if (!html) return null;
 
@@ -58,7 +58,7 @@ export function fromHTML(html, trim = true) {
 }
 
 // 파일 인풋 시 이미지 변경
-export function displayImageOnChange(inputImage, displayImage) {
+export const displayImageOnChange = (inputImage, displayImage) => {
     const file = inputImage.files[0]
     const reader = new FileReader();
 

@@ -15,10 +15,8 @@ const inputPasswordConfirmation = document.getElementById("password-confirmation
 const helperTextList = document.getElementsByClassName("helper-text");
 const buttonEdit = document.getElementById("edit-submit");
 
-// const editForm = document.getElementById("edit-password-form");
 
-
-function validateEditPassword() {
+const validateEditPassword = () => {
     const passwordResult = validatePassword(inputPassword.value)
     const confirmationResult = validatePasswordConfirmation(inputPassword.value, inputPasswordConfirmation.value);
 

@@ -5,7 +5,7 @@ document.querySelectorAll(".modal-button.cancel")
 
 
 // 딤 처리
-export function dimmed(flag = true) {
+export const dimmed = (flag = true) => {
     const dimmedElem = document.getElementById("dimmed");
     if (flag) {
         dimmedElem.style.display = "block";
@@ -15,7 +15,7 @@ export function dimmed(flag = true) {
 }
 
 // 모달 켜기
-export function modalOn(modalDomElementId, referenceId = null) {
+export const modalOn = (modalDomElementId, referenceId = null) => {
     let modalElem = document.getElementById(modalDomElementId);
     if (referenceId != null) {
         modalElem.dataset.id = referenceId.toString();
@@ -26,7 +26,7 @@ export function modalOn(modalDomElementId, referenceId = null) {
 }
 
 // 모달 끄기
-export function modalOff() {
+export const modalOff = () => {
     let modalList = document.getElementsByClassName("modal");
     for (let item of modalList) {
         delete item.dataset.id

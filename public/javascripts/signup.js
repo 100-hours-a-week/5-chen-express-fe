@@ -19,7 +19,7 @@ const helperTextList = document.getElementsByClassName("helper-text");
 const buttonSignup = document.getElementById("signup-button");
 
 
-async function checkEmail() {
+const checkEmail = async () => {
     const result = await validateEmail(inputEmail.value, true);
     if (result !== PASS) {
         enableHelper(helperTextList[1], result)
@@ -30,7 +30,7 @@ async function checkEmail() {
 }
 
 
-async function checkPassword() {
+const checkPassword = async () => {
     const result = validatePassword(inputPassword.value);
     if (result !== PASS) {
         enableHelper(helperTextList[2], result);
@@ -40,7 +40,7 @@ async function checkPassword() {
     return true;
 }
 
-async function checkPasswordConfirmation() {
+const checkPasswordConfirmation = async () => {
     const result = validatePasswordConfirmation(inputPassword.value, inputPasswordConfirmation.value);
     if (result !== PASS) {
         enableHelper(helperTextList[3], result)
@@ -50,7 +50,7 @@ async function checkPasswordConfirmation() {
     return true;
 }
 
-async function checkNickname() {
+const checkNickname = async () => {
     const result = await validateNickname(inputNickname.value, true);
     if (result !== PASS) {
         enableHelper(helperTextList[4], result);
@@ -60,7 +60,7 @@ async function checkNickname() {
     return true;
 }
 
-async function checkAll() {
+const checkAll = () => {
     return Promise.all([checkEmail(), checkPassword(), checkPasswordConfirmation(), checkNickname()])
         .then(results => {
             let validated = true;
@@ -79,7 +79,7 @@ async function checkAll() {
         });
 }
 
-async function notEmptyAll() {
+const notEmptyAll = async () => {
     let isEmpty = false;
     if (inputEmail.value.trim() === "") isEmpty = true;
     if (inputNickname.value.trim() === "") isEmpty = true;

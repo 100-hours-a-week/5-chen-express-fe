@@ -2,7 +2,7 @@ import {fetchServer, fromHTML, formatDateTime} from "/javascripts/fetch.js"
 
 console.log("LIST JS")
 
-function makePostFromData(post) {
+const makePostFromData = (post) => {
     const createdAt = new Date(Date.parse(post.created_at));
     const html =
         `

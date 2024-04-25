@@ -1,13 +1,13 @@
 // 닉네임 validate, validateDuplicate 하면 중복검사까지 함.
 import {fetchServer} from "/javascripts/fetch.js";
 
-export const PASS = "pass"
 const VALID_PWD_LENGTH_MAX = 20;
 const VALID_PWD_LENGTH_MIN = 8;
 const VALID_NICKNAME_LENGTH = 10;
+export const PASS = "pass"
 
 
-export async function validateNickname(nickname, validateDuplicate = false) {
+export const validateNickname = async (nickname, validateDuplicate = false) => {
     const W_NICK_EMPTY = "*닉네임을 입력해주세요.";
     const W_NICK_LONG = `*닉네임은 최대 ${VALID_NICKNAME_LENGTH}자 까지 작성 가능합니다.`;
     const W_NICK_BLANK = "*띄어쓰기를 없애주세요.";
@@ -40,7 +40,7 @@ export async function validateNickname(nickname, validateDuplicate = false) {
 }
 
 // 비밀번호 validate
-export function validatePassword(userPassword) {
+export const validatePassword = (userPassword) => {
     const validRegexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()]).+$/;
     const W_PWD_EMPTY = "*비밀번호를 입력해 주세요.";
     const W_PWD_FORMAT =
@@ -60,7 +60,7 @@ export function validatePassword(userPassword) {
 }
 
 // 비밀번호 확인 validation
-export function validatePasswordConfirmation(userPassword, userPasswordConfirmation) {
+export const validatePasswordConfirmation = (userPassword, userPasswordConfirmation) => {
     const W_PWD_CONFIRM_EMPTY = "*비밀번호를 한번 더 입력해주세요.";
     const W_PWD_CONFIRM_DIFF = "*비밀번호와 다릅니다.";
 
@@ -75,7 +75,7 @@ export function validatePasswordConfirmation(userPassword, userPasswordConfirmat
 
 
 // 이메일 validation
-export async function validateEmail(userEmail, validateDuplicate = false) {
+export const validateEmail = async (userEmail, validateDuplicate = false) => {
     const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     const W_EMAIL_INVALID = "*올바른 이메일 주소 형식을 입력해 주세요. (예: example@example.com)";
     const W_EMAIL_DUPLICATED = "*중복된 이메일 입니다."
@@ -110,12 +110,12 @@ export async function validateEmail(userEmail, validateDuplicate = false) {
 }
 
 // 헬퍼 텍스트 켜기
-export function enableHelper(helperNode, text) {
+export const enableHelper = (helperNode, text) => {
     helperNode.style.display = "inline";
     helperNode.innerHTML = text;
 }
 
 // 헬퍼 텍스트 끄기
-export function disableHelper(helperNode) {
+export const disableHelper = (helperNode) => {
     helperNode.style.display = "none";
 }
