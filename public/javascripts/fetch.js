@@ -1,5 +1,5 @@
 // JSON파일을 object로 가져오기
-const SERVER_URL = "http://localhost:8080"
+const SERVER_URL = "http://ec2-3-36-69-113.ap-northeast-2.compute.amazonaws.com:8080";
 
 export async function fetchServer(path, method = "GET", data = {}, isJson = true) {
     console.log(`fetch start${!isJson ? '' : ' JSON'} : ${method} ${path}`);
