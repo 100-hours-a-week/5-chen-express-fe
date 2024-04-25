@@ -1,4 +1,6 @@
 // 닉네임 validate, validateDuplicate 하면 중복검사까지 함.
+import {fetchServer} from "/javascripts/fetch.js";
+
 export const PASS = "pass"
 const VALID_LENGTH_MAX = 20;
 const VALID_LENGTH_MIN = 8;
@@ -36,7 +38,7 @@ export async function validateNickname(nickname, validateDuplicate = false) {
 }
 
 // 비밀번호 validate
-export function validatePassword(userPassword, validateDuplicate = false) {
+export function validatePassword(userPassword) {
     const W_PWD_EMPTY = "*비밀번호를 입력해 주세요.";
     const W_PWD_FORMAT = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
     if (userPassword.trim() == "") {
