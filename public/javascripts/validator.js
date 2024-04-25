@@ -2,13 +2,14 @@
 import {fetchServer} from "/javascripts/fetch.js";
 
 export const PASS = "pass"
-const VALID_LENGTH_MAX = 20;
-const VALID_LENGTH_MIN = 8;
+const VALID_PWD_LENGTH_MAX = 20;
+const VALID_PWD_LENGTH_MIN = 8;
+const VALID_NICKNAME_LENGTH = 10;
 
 
 export async function validateNickname(nickname, validateDuplicate = false) {
     const W_NICK_EMPTY = "*닉네임을 입력해주세요.";
-    const W_NICK_LONG = "*닉네임은 최대 10자 까지 작성 가능합니다.";
+    const W_NICK_LONG = `*닉네임은 최대 ${VALID_NICKNAME_LENGTH}자 까지 작성 가능합니다.`;
     const W_NICK_BLANK = "*띄어쓰기를 없애주세요.";
     const W_NICK_DUPLICATED = "*중복된 닉네임 입니다.";
 
@@ -31,7 +32,8 @@ export async function validateNickname(nickname, validateDuplicate = false) {
             return W_NICK_DUPLICATED;
         }
     }
-    if (nickname.length >= 11) {
+
+    if (nickname.length > VALID_NICKNAME_LENGTH) {
         return W_NICK_LONG;
     }
     return PASS;
@@ -39,16 +41,19 @@ export async function validateNickname(nickname, validateDuplicate = false) {
 
 // 비밀번호 validate
 export function validatePassword(userPassword) {
+    const validRegexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()]).+$/;
     const W_PWD_EMPTY = "*비밀번호를 입력해 주세요.";
-    const W_PWD_FORMAT = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.";
+    const W_PWD_FORMAT =
+        `*비밀번호는 ${VALID_PWD_LENGTH_MIN}자 이상, ${VALID_PWD_LENGTH_MAX}자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야 합니다.`;
+
     if (userPassword.trim() == "") {
         return W_PWD_EMPTY;
     }
-    if (userPassword.length < VALID_LENGTH_MIN || VALID_LENGTH_MAX < userPassword.length) {
+    if (userPassword.length < VALID_PWD_LENGTH_MIN || VALID_PWD_LENGTH_MAX < userPassword.length) {
         return W_PWD_FORMAT;
     }
-    const validRegex = /^[a-zA-Z0-9!@#$%^&*()]+$/;
-    if (!userPassword.match(validRegex)) {
+
+    if (!userPassword.match(validRegexp)) {
         return W_PWD_FORMAT;
     }
     return PASS;
@@ -56,11 +61,14 @@ export function validatePassword(userPassword) {
 
 // 비밀번호 확인 validation
 export function validatePasswordConfirmation(userPassword, userPasswordConfirmation) {
+    const W_PWD_CONFIRM_EMPTY = "*비밀번호를 한번 더 입력해주세요.";
+    const W_PWD_CONFIRM_DIFF = "*비밀번호와 다릅니다.";
+
     if (userPasswordConfirmation.trim().length === 0) {
-        return "*비밀번호를 한번 더 입력해주세요.";
+        return W_PWD_CONFIRM_EMPTY;
     }
     if (userPassword != userPasswordConfirmation) {
-        return "*비밀번호와 다릅니다.";
+        return W_PWD_CONFIRM_DIFF;
     }
     return PASS
 }
@@ -75,10 +83,6 @@ export async function validateEmail(userEmail, validateDuplicate = false) {
     if (userEmail.trim() === "") {
         return W_EMAIL_INVALID;
     }
-
-    // if (VALID_LENGTH_MAX < userEmail.length) {
-    // return false;
-    // }
 
     if (!userEmail.match(validRegex)) {
         return W_EMAIL_INVALID;
