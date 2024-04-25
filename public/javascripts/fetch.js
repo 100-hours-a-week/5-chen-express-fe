@@ -26,13 +26,19 @@ export function formatDateTime(date) {
     const year = date.getFullYear();
     let day = date.getDate();
     const hour = date.getHours();
-    const min = date.getMinutes();
-    const sec = date.getSeconds();
+    let min = date.getMinutes();
+    let sec = date.getSeconds();
     if (month < 10) {
         month = `0${month}`
     }
     if (day < 10) {
         month = `0${day}`
+    }
+    if (min < 10) {
+        min = `0${min}`
+    }
+    if (sec < 10) {
+        sec = `0${sec}`
     }
 
     return `${year}-${month}-${day} ${hour}:${min}:${sec}`

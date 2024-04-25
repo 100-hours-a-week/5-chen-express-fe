@@ -117,11 +117,11 @@ buttonSignup.addEventListener("click", () => {
             if (!validated) throw Error("not validated")
             const signUpForm = document.getElementById("signup-form");
             const formData = new FormData(signUpForm);
-            console.log(...formData.entries())
             return fetchServer("/signup", "POST", formData, false)
         })
         .then(response => {
             if (response.ok) {
+                alert("회원가입 되었습니다.");
                 window.location = "/login.html"
             } else {
                 console.warn(response);
