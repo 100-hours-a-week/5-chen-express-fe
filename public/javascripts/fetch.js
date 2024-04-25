@@ -8,9 +8,11 @@ export async function fetchServer(path, method = "GET", data = {}, isJson = true
     }
     if (isJson) {
         requestInit.headers = {"Content-Type": "application/json",}
-    }
-    if (method !== "GET" && method !== "HEAD") {
-        requestInit.body = data;
+        if (method !== "GET" && method !== "HEAD") {
+            requestInit.body = JSON.stringify(data);
+        }
+    } else {
+        requestInit.body = JSON.stringify(data);
     }
 
     return fetch(`${SERVER_URL}${path}`, requestInit)
