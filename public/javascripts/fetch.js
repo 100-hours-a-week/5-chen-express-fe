@@ -1,32 +1,37 @@
 // JSON파일을 object로 가져오기
+const SERVER_URL = "http://localhost:8080"
+
 export async function fetchServer(path, method = "GET", data = {}, isJson = true) {
     console.log(`fetch start : ${path}`)
-    if (method === "GET" || method === "HEAD") {
-        return fetch("http://localhost:8080" + path, {
-            headers: {
-                "Content-Type": "application/json",
-            },
-            method: method,
-        })
+    const requestInit = {
+        method: method
     }
-    if (!isJson) {
-        return fetch("http://localhost:8080" + path, {
-            method: method,
-            body: data,
-        })
+    if (isJson) {
+        requestInit.headers = {"Content-Type": "application/json",}
     }
-    return fetch("http://localhost:8080" + path, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        method: method,
-        body: JSON.stringify(data),
-    })
+    if (method !== "GET" && method !== "HEAD") {
+        requestInit.body = data;
+    }
+
+    return fetch(`${SERVER_URL}${path}`, requestInit)
 }
 
 // 날짜 포맷팅
 export function formatDateTime(date) {
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    let month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    let day = date.getDate();
+    const hour = date.getHours();
+    const min = date.getMinutes();
+    const sec = date.getSeconds();
+    if (month < 10) {
+        month = `0${month}`
+    }
+    if (day < 10) {
+        month = `0${day}`
+    }
+
+    return `${year}-${month}-${day} ${hour}:${min}:${sec}`
 }
 
 // html string -> dom element로 변환

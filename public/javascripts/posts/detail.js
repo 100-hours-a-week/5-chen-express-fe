@@ -25,13 +25,15 @@ inputComment.addEventListener("input", () => {
     }
 })
 
+const BUTTON_TXT_EDIT_COMMENT = "댓글 수정";
 buttonComment.addEventListener("click", (e) => {
     console.log(buttonComment.textContent)
     if (inputComment.value.trim().length === 0) {
         return;
     }
 
-    if (buttonComment.textContent === "댓글 등록") {
+    const BUTTON_TXT_WRITE_COMMENT = "댓글 등록";
+    if (buttonComment.textContent === BUTTON_TXT_WRITE_COMMENT) {
         fetchServer(`/comments`, "POST", {
             post_id: post_id,
             content: inputComment.value
@@ -40,7 +42,7 @@ buttonComment.addEventListener("click", (e) => {
                 console.log(data)
             })
     }
-    if (buttonComment.textContent === "댓글 수정") {
+    if (buttonComment.textContent === BUTTON_TXT_EDIT_COMMENT) {
         fetchServer(`/comments/${buttonComment.dataset.id}`, "POST", {
             content: inputComment.value
         }).then(response => response.json())
@@ -129,7 +131,7 @@ fetchServer(`/posts/${post_id}`)
     })
 
 function editComment(content, id) {
-    buttonComment.textContent = '댓글 수정';
+    buttonComment.textContent = BUTTON_TXT_EDIT_COMMENT;
     inputComment.value = content
     buttonComment.dataset.id = id;
 }

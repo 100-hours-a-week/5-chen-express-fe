@@ -15,10 +15,10 @@ export function dimmed(flag = true) {
 }
 
 // 모달 켜기
-export function modalOn(modalId, id = null) {
-    let modalElem = document.getElementById(modalId);
-    if (id != null) {
-        modalElem.dataset.id = id.toString();
+export function modalOn(modalDomElementId, referenceId = null) {
+    let modalElem = document.getElementById(modalDomElementId);
+    if (referenceId != null) {
+        modalElem.dataset.id = referenceId.toString();
     }
     modalElem.style.display = "flex";
     dimmed()
