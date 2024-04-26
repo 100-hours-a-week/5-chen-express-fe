@@ -5,7 +5,8 @@ export const fetchServer = async (path, method = "GET", data = {}, isJson = true
     console.log(`fetch start${!isJson ? '' : ' JSON'} : ${method} ${path}`);
 
     const requestInit = {
-        method: method
+        method: method,
+        credentials: 'include',
     };
 
     if (isJson) {
