@@ -36,22 +36,29 @@ buttonComment.addEventListener("click", (e) => {
         fetchServer(`/comments`, "POST", {
             post_id: post_id,
             content: inputComment.value
-        }).then(response => response.json())
+        })
+            .then(response => response.json())
             .then(data => {
                 console.log(data)
+            })
+            .then(() => {
+                e.preventDefault();
+                window.location.reload();
             })
     }
     if (buttonComment.textContent === BUTTON_TXT_EDIT_COMMENT) {
         fetchServer(`/comments/${buttonComment.dataset.id}`, "POST", {
             content: inputComment.value
-        }).then(response => response.json())
+        })
+            .then(response => response.json())
             .then(data => {
                 console.log(data)
             })
+            .then(() => {
+                e.preventDefault();
+                window.location.reload();
+            })
     }
-
-    e.preventDefault();
-    window.location.reload();
 })
 
 buttonDeletePost.addEventListener("click", () => {
