@@ -18,7 +18,26 @@ export const fetchServer = async (path, method = "GET", data = {}, isJson = true
         requestInit.body = data;
     }
 
-    return fetch(`${SERVER_URL}${path}`, requestInit);
+    return fetch(`${SERVER_URL}${path}`, requestInit)
+        .then(response => {
+            if (response.ok) {
+                return response;
+            }
+
+            if (response.status === 500) {
+                console.warn(response.json());
+                throw Error("SERVER ERROR");
+            }
+            if (response.status < 500) {
+                response.json()
+                    .then(data => {
+                        alert(data.msg);
+                        window.alert = null;
+                        window.location = "/login.html";
+                    })
+                throw Error("SERVER ERROR");
+            }
+        });
 }
 
 // 날짜 포맷팅
