@@ -1,4 +1,4 @@
-import {fetchServer, formatDateTime, fromHTML} from "/javascripts/fetch.js";
+import {fetchServer, formatDateTime, fromHTML, formattingCount} from "/javascripts/fetch.js";
 import {modalOn} from "/javascripts/modal.js";
 import {CSS_MAGENTA, CSS_DEEP_MAGENTA} from "/javascripts/constant_css.js";
 
@@ -121,11 +121,11 @@ fetchServer(`/posts/${post_id}`)
             </div>
             <div class="post-button-wrap">
                 <button class="post-meta-button">
-                    <span>${post.view_count}</span>
+                    <span>${formattingCount(post.view_count)}</span>
                     <span>조회수</span>
                 </button>
                 <button class="post-meta-button">
-                    <span>${post.comment_count}</span>
+                    <span>${formattingCount(post.comment_count)}</span>
                     <span>댓글</span>
                 </button>
             </div>

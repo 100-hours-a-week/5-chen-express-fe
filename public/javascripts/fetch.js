@@ -90,3 +90,11 @@ export const displayImageOnChange = (inputImage, displayImage) => {
         reader.readAsDataURL(file)
     }
 }
+export const formattingCount = (count) => {
+    let K = Math.floor(count / 1_000);
+    const numberFormat = (num) => new Intl.NumberFormat("ko-KR").format(num);
+    if (K > 0) {
+        return `${numberFormat(K)}K`;
+    }
+    return numberFormat(count);
+}
