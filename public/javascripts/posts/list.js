@@ -1,4 +1,4 @@
-import {fetchServer, fromHTML, formatDateTime} from "/javascripts/fetch.js"
+import {fetchServer, fromHTML, formatDateTime, formattingCount} from "/javascripts/fetch.js"
 
 console.log("LIST JS")
 
@@ -10,9 +10,9 @@ const makePostFromData = (post) => {
                     <div class="post-top">
                         <h1>${post.title}</h1>
                         <div class="post-metadata">
-                            <span class="post-counts">좋아요 ${post.like_count}</span>
-                            <span class="post-counts">댓글 ${post.comment_count}</span>
-                            <span class="post-counts">조회수 ${post.view_count}</span>
+                            <!--<span class="post-counts">좋아요 ${formattingCount(post.like_count)}</span>-->
+                            <span class="post-counts">댓글 ${formattingCount(post.comment_count)}</span>
+                            <span class="post-counts">조회수 ${formattingCount(post.view_count)}</span>
                             <time class="post-created-at">${formatDateTime(createdAt)}</time>
                         </div>
                     </div>

@@ -247,13 +247,15 @@ header h1 {
     font-weight: 400;
 }
 
-#profile-menu > a {
+#profile-menu > a, #profile-menu > p {
     width: 90%;
     height: 30px;
     margin: 4px 5%;
 
     text-align: center;
     align-content: center;
+
+    cursor: pointer;
 }
 
 .modal {

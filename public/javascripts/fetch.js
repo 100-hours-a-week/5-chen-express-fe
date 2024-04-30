@@ -5,7 +5,8 @@ export const fetchServer = async (path, method = "GET", data = {}, isJson = true
     console.log(`fetch start${!isJson ? '' : ' JSON'} : ${method} ${path}`);
 
     const requestInit = {
-        method: method
+        method: method,
+        credentials: 'include',
     };
 
     if (isJson) {
@@ -17,7 +18,26 @@ export const fetchServer = async (path, method = "GET", data = {}, isJson = true
         requestInit.body = data;
     }
 
-    return fetch(`${SERVER_URL}${path}`, requestInit);
+    return fetch(`${SERVER_URL}${path}`, requestInit)
+        .then(response => {
+            if (response.ok) {
+                return response;
+            }
+
+            if (response.status === 500) {
+                console.warn(response.json());
+                throw Error("SERVER ERROR");
+            }
+            if (response.status < 500) {
+                response.json()
+                    .then(data => {
+                        alert(data.msg);
+                        window.alert = null;
+                        window.location = "/login.html";
+                    })
+                throw Error("SERVER ERROR");
+            }
+        });
 }
 
 // 날짜 포맷팅
@@ -69,4 +89,12 @@ export const displayImageOnChange = (inputImage, displayImage) => {
     if (file) {
         reader.readAsDataURL(file)
     }
+}
+export const formattingCount = (count) => {
+    let K = Math.floor(count / 1_000);
+    const numberFormat = (num) => new Intl.NumberFormat("ko-KR").format(num);
+    if (K > 0) {
+        return `${numberFormat(K)}K`;
+    }
+    return numberFormat(count);
 }
